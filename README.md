@@ -15,7 +15,7 @@ A service for ROS2 to explore a map using LLoyd algorithm with Vornoi regions, t
 ```
 colcon build
 ```
-2. Open 4 more terminal
+2. Open 4 more terminals
 3. Source the project in each terminal using
 ```
 source install/setup.bash
