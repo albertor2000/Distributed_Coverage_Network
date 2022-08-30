@@ -1,0 +1,765 @@
+\hypertarget{control__vanilla_8cpp_source}{}\doxysection{control\+\_\+vanilla.\+cpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#include "{}control.h"{}}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00003}00003 std::shared\_ptr<rclcpp::Node> node\_publisher\_drone[NDRONE],node\_subscriber\_drone[NDRONE],node\_image[NDRONE],node\_depth[NDRONE]; \textcolor{comment}{/*<Variables that will create all the publishers and subscriber for the drones.*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00005}00005 rclcpp::Publisher<VehicleCommand>::SharedPtr vehicle\_command\_publisher\_drone[NDRONE];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00006}00006 rclcpp::Publisher<OffboardControlMode>::SharedPtr offboard\_control\_mode\_publisher\_drone[NDRONE];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00007}00007 rclcpp::Publisher<TrajectorySetpoint>::SharedPtr trajectory\_setpoint\_publisher\_drone[NDRONE];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00008}00008 rclcpp::Subscription<VehicleOdometry>::SharedPtr odometry\_subscriber\_drone[NDRONE];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00009}00009 rclcpp::Subscription<sensor\_msgs::msg::Image>::SharedPtr test\_image[NDRONE];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00010}00010 rclcpp::Subscription<sensor\_msgs::msg::Range>::SharedPtr test\_depth[NDRONE];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00013}00013 std::shared\_ptr<rclcpp::Node> node\_publisher\_rover[NROVER],node\_subscriber\_rover[NROVER];   \textcolor{comment}{/*<Variables that will create all the publishers and subscriber for the rovers.*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00015}00015 rclcpp::Publisher<VehicleCommand>::SharedPtr vehicle\_command\_publisher\_rover[NROVER];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00016}00016 rclcpp::Publisher<OffboardControlMode>::SharedPtr offboard\_control\_mode\_publisher\_rover[NROVER];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00017}00017 rclcpp::Publisher<TrajectorySetpoint>::SharedPtr trajectory\_setpoint\_publisher\_rover[NROVER];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00018}00018 rclcpp::Subscription<VehicleOdometry>::SharedPtr odometry\_subscriber\_rover[NROVER];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00021}00021 std::shared\_ptr<rclcpp::Node> node\_ui;  \textcolor{comment}{/*<Variable that will create the subscriver for the user\_interface to receive all the actions to perform.*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00022}00022 rclcpp::Subscription<interfaces::msg::Mymsg>::SharedPtr ui\_subscriber;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00024}00024 std::shared\_ptr<rclcpp::Node> node\_position;  \textcolor{comment}{/*<Variable that will create the subscriver for the user\_interface to receive all the actions to perform.*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00025}00025 rclcpp::Subscription<interfaces::msg::Posmsg>::SharedPtr position\_subscriber;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00027}00027 std::shared\_ptr<rclcpp::Node> node\_return;  \textcolor{comment}{/*<Variable that will create the publisher for the user\_interface to publish the coordinates to calculate the return.*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00028}00028 rclcpp::Publisher<interfaces::msg::MsgRet>::SharedPtr client\_return;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00030}00030 \textcolor{keywordtype}{double} x\_drone[NDRONE],y\_drone[NDRONE],z\_drone[NDRONE];   \textcolor{comment}{/*<Variables to save the position of the drones.*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00031}00031 \textcolor{keywordtype}{double} x\_rover[NROVER],y\_rover[NROVER],z\_rover[NROVER];   \textcolor{comment}{/*<Variables to save the position of the rovers.*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00037}00037 \textcolor{keywordtype}{void} delay(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} ms) }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00038}00038 \{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00039}00039     std::this\_thread::sleep\_for(std::chrono::milliseconds(ms));}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00040}00040 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00043}00043 \textcolor{keywordtype}{int} drone\_requesting\_position=-\/1;   }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00044}00044 std::mutex mutex\_position\_drone;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00049}00049 \textcolor{keywordtype}{void} odom\_callback\_drone(\textcolor{keywordtype}{int} droneid)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00050}00050     mutex\_position\_drone.lock();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00051}00051     drone\_requesting\_position=droneid;  \textcolor{comment}{//cannot pass droneid to the callback function since it must accept only one parameter, the msg}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00052}00052     rclcpp::spin\_some(node\_subscriber\_drone[droneid]);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00053}00053 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00060}00060 \textcolor{keywordtype}{void} save\_drone\_position(\textcolor{keyword}{const} VehicleOdometry::UniquePtr msg)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00061}00061     \textcolor{keywordflow}{if}(drone\_requesting\_position!=-\/1)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00062}00062         x\_drone[drone\_requesting\_position]=msg-\/>x;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00063}00063         y\_drone[drone\_requesting\_position]=msg-\/>y;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00064}00064         z\_drone[drone\_requesting\_position]=msg-\/>z; }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00065}00065         drone\_requesting\_position=-\/1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00066}00066         mutex\_position\_drone.unlock();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00067}00067     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00068}00068         std::cout<<\textcolor{stringliteral}{"{}Error drone\_requesting\_position is -\/1!\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00069}00069     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00070}00070 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00072}00072 \textcolor{keywordtype}{int} rover\_requesting\_position=-\/1;   }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00073}00073 std::mutex mutex\_position\_rover;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00078}00078 \textcolor{keywordtype}{void} odom\_callback\_rover(\textcolor{keywordtype}{int} roverid)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00079}00079     mutex\_position\_rover.lock();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00080}00080     rover\_requesting\_position=roverid;  \textcolor{comment}{//cannot pass roverid to the callback function since it must accept only one parameter, the msg}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00081}00081     rclcpp::spin\_some(node\_subscriber\_rover[roverid]);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00082}00082     mutex\_position\_rover.unlock();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00083}00083 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00090}00090 \textcolor{keywordtype}{void} save\_rover\_position(\textcolor{keyword}{const} VehicleOdometry::UniquePtr msg)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00091}00091     \textcolor{keywordflow}{if}(rover\_requesting\_position!=-\/1)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00092}00092         x\_rover[rover\_requesting\_position]=msg-\/>x;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00093}00093         y\_rover[rover\_requesting\_position]=msg-\/>y;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00094}00094         z\_rover[rover\_requesting\_position]=msg-\/>z; }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00095}00095         rover\_requesting\_position=-\/1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00096}00096         mutex\_position\_rover.unlock();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00097}00097     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00098}00098         std::cout<<\textcolor{stringliteral}{"{}Error rover\_requesting\_position is -\/1!\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00099}00099     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00100}00100 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00101}00101 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00106}00106 \textcolor{keywordtype}{void} print\_pos\_drone(\textcolor{keywordtype}{int} droneid)\{ }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00107}00107     odom\_callback\_drone(droneid);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00108}00108     std::cout<<\textcolor{stringliteral}{"{}Drone "{}}<<droneid<<\textcolor{stringliteral}{"{}: x: "{}}<<x\_drone[droneid]<<\textcolor{stringliteral}{"{} y: "{}}<<y\_drone[droneid]<<\textcolor{stringliteral}{"{} z: "{}}<<-\/z\_drone[droneid]<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00109}00109 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00115}00115 \textcolor{keywordtype}{void} print\_pos\_rover(\textcolor{keywordtype}{int} roverid)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00116}00116     odom\_callback\_rover(roverid);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00117}00117     std::cout<<\textcolor{stringliteral}{"{}Rover "{}}<<roverid<<\textcolor{stringliteral}{"{}: x: "{}}<<x\_rover[roverid]<<\textcolor{stringliteral}{"{} y: "{}}<<y\_rover[roverid]<<\textcolor{stringliteral}{"{} z: "{}}<<-\/z\_rover[roverid]<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00118}00118 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00119}00119 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00125}00125 \textcolor{keywordtype}{void} takeoff\_drone(\textcolor{keywordtype}{int} droneid,\textcolor{keywordtype}{double} z)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00126}00126 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00127}00127     VehicleCommand msg\{\};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00128}00128     msg.param1 = 1; }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00129}00129     msg.param2 = 6; }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00130}00130     msg.command = VehicleCommand::VEHICLE\_CMD\_DO\_SET\_MODE;  \textcolor{comment}{//set offboard mode}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00131}00131     msg.target\_system = NROVER+droneid+1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00132}00132     msg.target\_component = 0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00133}00133     msg.source\_system = 1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00134}00134     msg.source\_component = 1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00135}00135     msg.from\_external = \textcolor{keyword}{true};   }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00136}00136 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00137}00137     VehicleCommand msg2\{\};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00138}00138     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00139}00139     msg2.param1 = 1.0;  \textcolor{comment}{//1 = arm, 0 = disarm}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00140}00140     \textcolor{comment}{//msg2.param2 = 0.0;}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00141}00141     msg2.command = VehicleCommand::VEHICLE\_CMD\_COMPONENT\_ARM\_DISARM;    \textcolor{comment}{//arm the drone}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00142}00142     msg2.target\_system = NROVER+droneid+1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00143}00143     msg2.target\_component = 0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00144}00144     msg2.source\_system = 1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00145}00145     msg2.source\_component = 1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00146}00146     msg2.from\_external = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00147}00147 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00148}00148     OffboardControlMode msg3\{\};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00149}00149     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00150}00150     msg3.position = \textcolor{keyword}{true};   \textcolor{comment}{//only control position}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00151}00151     msg3.velocity = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00152}00152     msg3.acceleration = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00153}00153     msg3.attitude = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00154}00154     msg3.body\_rate = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00155}00155 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00156}00156     odom\_callback\_drone(droneid);   }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00157}00157     TrajectorySetpoint msg4\{\};  \textcolor{comment}{//set destination coordinates}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00158}00158     msg4.x = x\_drone[droneid];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00159}00159     msg4.y = y\_drone[droneid];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00160}00160     msg4.z = -\/z;    \textcolor{comment}{//the frame of reference has the z axis pointed "{}downward"{}}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00161}00161     msg4.yaw = -\/PI;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00162}00162 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00163}00163     \textcolor{keywordtype}{int} offboard\_setpoint\_counter\_ = 0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00164}00164     \textcolor{keywordtype}{double} dist\_from\_dest=DOUBLE\_MAX;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00165}00165     \textcolor{keywordtype}{double} x\_dest=0.0,y\_dest=0.0,z\_dest=-\/z;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00166}00166     \textcolor{keywordtype}{int} cont=0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00167}00167 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00168}00168     \textcolor{keywordflow}{do}\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00169}00169         odom\_callback\_drone(droneid);    \textcolor{comment}{//get current position}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00170}00170         dist\_from\_dest=sqrt(((x\_drone[droneid]-\/x\_dest)*(x\_drone[droneid]-\/x\_dest))+((y\_drone[droneid]-\/y\_dest)*(y\_drone[droneid]-\/y\_dest))+((z\_drone[droneid]-\/z\_dest)*(z\_drone[droneid]-\/z\_dest)));   \textcolor{comment}{//calculate distance from target}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00171}00171 \textcolor{preprocessor}{        \#if DEBUG\_MODE}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00172}00172             \textcolor{keywordflow}{if}(droneid==0)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00173}00173                 std::cout<<\textcolor{stringliteral}{"{}distance from target:"{}}<<dist\_from\_dest<<std::endl;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00174}00174                 print\_pos\_drone(0);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00175}00175             \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00176}00176 \textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00177}00177 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00178}00178         \textcolor{keywordflow}{if} (offboard\_setpoint\_counter\_ == 11) \{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00179}00179             vehicle\_command\_publisher\_drone[droneid]-\/>publish(msg); \textcolor{comment}{//send offboard mode and arm commands}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00180}00180             vehicle\_command\_publisher\_drone[droneid]-\/>publish(msg2);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00181}00181         \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00182}00182         offboard\_control\_mode\_publisher\_drone[droneid]-\/>publish(msg3);  }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00183}00183         trajectory\_setpoint\_publisher\_drone[droneid]-\/>publish(msg4);    \textcolor{comment}{//send some position command before the arm command to avoid arming and disarming without takeoff}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00184}00184         \textcolor{keywordflow}{if} (offboard\_setpoint\_counter\_ < 11) \{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00185}00185             offboard\_setpoint\_counter\_++;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00186}00186         \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00187}00187         rclcpp::spin\_some(node\_publisher\_drone[droneid]);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00188}00188         delay(100);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00189}00189         cont++;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00190}00190         \textcolor{keywordflow}{if}(cont==100)\{  \textcolor{comment}{//print position every \string~10 seconds}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00191}00191             cont =0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00192}00192             print\_pos\_drone(droneid);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00193}00193         \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00194}00194 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00195}00195 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00196}00196     \}\textcolor{keywordflow}{while}(dist\_from\_dest>TARGET\_PRECISION);    \textcolor{comment}{//keep sen/ding command until it's close enough to destination}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00197}00197     std::cout<<\textcolor{stringliteral}{"{}Drone "{}}<<droneid<<\textcolor{stringliteral}{"{}: takeoff sent\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00198}00198 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00199}00199 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00205}00205 \textcolor{keywordtype}{void} land\_at\_actual\_location\_drone(\textcolor{keywordtype}{int} droneid)\{ }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00206}00206     VehicleCommand msg;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00207}00207     \textcolor{keywordtype}{int} count=0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00208}00208     msg.command=VehicleCommand::VEHICLE\_CMD\_NAV\_LAND;   \textcolor{comment}{//command to land}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00209}00209     odom\_callback\_drone(droneid);   \textcolor{comment}{//take position of the drone}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00210}00210     msg.param5=x\_drone[droneid];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00211}00211     msg.param6=y\_drone[droneid];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00212}00212     msg.param7=-\/z\_drone[droneid];  }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00213}00213     msg.target\_system = NROVER+droneid+1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00214}00214     msg.target\_component=1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00215}00215     msg.source\_system=1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00216}00216     msg.source\_component=1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00217}00217     msg.from\_external=\textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00218}00218     \textcolor{keywordflow}{while}(rclcpp::ok() \&\& count<10)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00219}00219         vehicle\_command\_publisher\_drone[droneid]-\/>publish(msg); \textcolor{comment}{//send the command 10 times to be sure that the command is received}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00220}00220         count++;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00221}00221         delay(100);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00222}00222     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00223}00223     rclcpp::spin\_some(node\_publisher\_drone[droneid]);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00224}00224     std::cout<<\textcolor{stringliteral}{"{}Drone "{}}<<droneid<<\textcolor{stringliteral}{"{}: landing sent\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00225}00225 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00226}00226 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00227}00227 \textcolor{keywordtype}{bool} hasPositionChange = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00228}00228 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00237}00237 \textcolor{keywordtype}{void} position\_drone(\textcolor{keywordtype}{int} droneid,\textcolor{keywordtype}{double} x\_dest,\textcolor{keywordtype}{double} y\_dest,\textcolor{keywordtype}{double} z\_dest,\textcolor{keywordtype}{double} yaw\_dest)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00238}00238     z\_dest=-\/z\_dest; \textcolor{comment}{//the reference system has the z axis facing downwards}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00239}00239 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00240}00240     OffboardControlMode msg3\{\};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00241}00241     msg3.position = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00242}00242     msg3.velocity = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00243}00243     msg3.acceleration = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00244}00244     msg3.attitude = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00245}00245     msg3.body\_rate = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00246}00246 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00247}00247     TrajectorySetpoint msg4\{\};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00248}00248     msg4.x = x\_dest;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00249}00249     msg4.y = y\_dest;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00250}00250     msg4.z = z\_dest;    }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00251}00251     msg4.yaw = yaw\_dest;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00252}00252     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00253}00253     \textcolor{keywordtype}{double} dist\_from\_dest=DOUBLE\_MAX;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00254}00254     \textcolor{keywordtype}{int} cont =0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00255}00255     \textcolor{keywordflow}{do}\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00256}00256         odom\_callback\_drone(droneid);    \textcolor{comment}{//get current position}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00257}00257         dist\_from\_dest=sqrt(((x\_drone[droneid]-\/x\_dest)*(x\_drone[droneid]-\/x\_dest))+((y\_drone[droneid]-\/y\_dest)*(y\_drone[droneid]-\/y\_dest))+((z\_drone[droneid]-\/z\_dest)*(z\_drone[droneid]-\/z\_dest)));   \textcolor{comment}{//calculate distance from target}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00258}00258 \textcolor{preprocessor}{        \#if DEBUG\_MODE}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00259}00259             std::cout<<\textcolor{stringliteral}{"{}distance from target:"{}}<<dist\_from\_dest<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00260}00260 \textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00261}00261 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00262}00262         offboard\_control\_mode\_publisher\_drone[droneid]-\/>publish(msg3);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00263}00263         trajectory\_setpoint\_publisher\_drone[droneid]-\/>publish(msg4);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00264}00264 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00265}00265         delay(100);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00266}00266         cont++;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00267}00267         \textcolor{keywordflow}{if}(cont==100)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00268}00268             cont=0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00269}00269             print\_pos\_drone(droneid);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00270}00270         \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00271}00271 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00272}00272 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00273}00273     \}\textcolor{keywordflow}{while}(dist\_from\_dest>TARGET\_PRECISION \&\& !hasPositionChange);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00274}00274 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00275}00275     std::cout<<\textcolor{stringliteral}{"{}Drone "{}}<<droneid<<\textcolor{stringliteral}{"{}: arrived at destination\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00276}00276 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00277}00277 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00283}00283 \textcolor{keywordtype}{void} yaw\_rotation\_drone(\textcolor{keywordtype}{int} droneid,\textcolor{keywordtype}{double} new\_yaw)\{    }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00284}00284     odom\_callback\_drone(droneid);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00285}00285     position\_drone(droneid,x\_drone[droneid],y\_drone[droneid],-\/z\_drone[droneid],new\_yaw);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00286}00286     delay(1000);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00287}00287 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00288}00288 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00293}00293 \textcolor{keywordtype}{void} disarm\_drone(\textcolor{keywordtype}{int} droneid)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00294}00294     \textcolor{keywordtype}{int} count = 0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00295}00295     VehicleCommand msg2\{\};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00296}00296     msg2.param1 = 0.0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00297}00297     msg2.command = VehicleCommand::VEHICLE\_CMD\_COMPONENT\_ARM\_DISARM;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00298}00298     msg2.target\_system = 1+droneid;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00299}00299     msg2.target\_component = 1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00300}00300     msg2.source\_system = 1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00301}00301     msg2.source\_component = 1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00302}00302     msg2.from\_external = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00303}00303 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00304}00304     \textcolor{keywordflow}{while}(rclcpp::ok() \&\& count<10)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00305}00305         vehicle\_command\_publisher\_drone[droneid]-\/>publish(msg2);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00306}00306         count++;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00307}00307         delay(100);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00308}00308     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00309}00309     rclcpp::spin\_some(node\_publisher\_drone[droneid]);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00310}00310 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00311}00311 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00312}00312 std::mutex m; }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00313}00313 \textcolor{keywordtype}{int} drone\_shooting=-\/1;  }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00314}00314 \textcolor{keywordtype}{int} serial[NDRONE];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00315}00315 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00321}00321 \textcolor{keywordtype}{void} image\_callback(\textcolor{keyword}{const} sensor\_msgs::msg::Image::SharedPtr msg)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00322}00322     \textcolor{keywordflow}{if}(drone\_shooting!=-\/1)\{ }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00323}00323         \textcolor{comment}{//data size is step*height}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00324}00324         std::cout<<\textcolor{stringliteral}{"{}Image recieved\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00325}00325         cv\_bridge::CvImagePtr cv\_image;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00326}00326         }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00327}00327         cv\_image = cv\_bridge::toCvCopy(msg, msg-\/>encoding);    \textcolor{comment}{//convert image from uint8 array to opencv image}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00328}00328         cv::Mat frame= cv\_image-\/>image; \textcolor{comment}{//convert image to matrix}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00329}00329         \textcolor{keywordflow}{try}\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00330}00330             cv::imwrite(\textcolor{stringliteral}{"{}/home/drone/Planning-\/drones-\/ROS2/robots\_control/images/drone\_"{}}+std::to\_string(drone\_shooting)+\textcolor{stringliteral}{"{}\_n\_"{}}+std::to\_string(serial[drone\_shooting])+\textcolor{stringliteral}{"{}.jpg"{}},frame);   \textcolor{comment}{//save image}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00331}00331             serial[drone\_shooting]++;   \textcolor{comment}{//update serial for future images}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00332}00332         \}\textcolor{keywordflow}{catch}(...)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00333}00333             std::cout<<\textcolor{stringliteral}{"{}Error!"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00334}00334         \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00335}00335         drone\_shooting=-\/1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00336}00336     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00337}00337     m.unlock();  }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00338}00338 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00339}00339 std::mutex m\_depth;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00340}00340 \textcolor{keywordtype}{int} drone\_depth=-\/1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00341}00341 \textcolor{keywordtype}{double} z\_sensor[NDRONE];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00346}00346 \textcolor{keywordtype}{void} depth\_callback(\textcolor{keyword}{const} sensor\_msgs::msg::Range::SharedPtr msg)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00347}00347     \textcolor{keywordflow}{if}(drone\_depth!=-\/1)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00348}00348         z\_sensor[drone\_depth]=msg-\/>range;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00349}00349         drone\_depth=-\/1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00350}00350     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00351}00351     m\_depth.unlock();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00352}00352         }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00353}00353     \textcolor{comment}{//std::cout<<"{}Distance: "{}<<msg-\/>range<<"{}\(\backslash\)n"{};}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00354}00354 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00355}00355 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00356}00356 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00361}00361 \textcolor{keywordtype}{void} get\_image(\textcolor{keywordtype}{int} droneid)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00362}00362     std::cout<<\textcolor{stringliteral}{"{}Drone "{}}<<droneid<<\textcolor{stringliteral}{"{}: getting image\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00363}00363     m.lock();   \textcolor{comment}{//since that i use a single callback for both the cameras, i want to avoid conflicts of any type}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00364}00364     drone\_shooting=droneid; \textcolor{comment}{//save the droneid that is taking the photo}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00365}00365     rclcpp::spin\_some(node\_image[droneid]);    \textcolor{comment}{//get the photo (trigger image\_callback)}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00366}00366     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00367}00367 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00368}00368 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00373}00373 \textcolor{keywordtype}{void} get\_depth(\textcolor{keywordtype}{int} droneid)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00374}00374     m\_depth.lock();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00375}00375     drone\_depth=droneid;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00376}00376     rclcpp::spin\_some(node\_depth[droneid]);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00377}00377 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00378}00378 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00379}00379 std::list<int> drone\_action[NDRONE], rover\_action[NROVER];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00380}00380 std::list<float> drone\_x[NDRONE],drone\_y[NDRONE],drone\_z[NDRONE];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00381}00381 std::list<float> rover\_x[NDRONE],rover\_y[NDRONE],rover\_z[NDRONE];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00382}00382 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00383}00383 \textcolor{comment}{//std::list<int> drone\_0\_action, drone\_1\_action, rover\_action;    /*!<Lists used to store all the action that a vehicle will perform (takeoff, land, move and take picture). */}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00384}00384 \textcolor{comment}{//std::list<float> drone\_0\_x,drone\_1\_x,rover\_x, drone\_0\_y,drone\_1\_y,rover\_y,drone\_0\_z,drone\_1\_z,rover\_z;  /*<Lists used to store the positions at which the action will be performed */}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00385}00385 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00390}00390 \textcolor{keywordtype}{void} perform\_mission\_rover(\textcolor{keywordtype}{int} roverid)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00391}00391     VehicleCommand msg\{\};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00392}00392     msg.param1 = 1; }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00393}00393     msg.param2 = 6; }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00394}00394     msg.command = VehicleCommand::VEHICLE\_CMD\_DO\_SET\_MODE;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00395}00395     msg.target\_system = 1+roverid;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00396}00396     msg.target\_component = 0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00397}00397     msg.source\_system = 1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00398}00398     msg.source\_component = 1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00399}00399     msg.from\_external = \textcolor{keyword}{true};   }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00400}00400 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00401}00401     VehicleCommand msg2\{\};  \textcolor{comment}{//since that, unlike drones, the rover doesn't have a takeoff procedure, the rover is armed here}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00402}00402     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00403}00403     msg2.param1 = 1.0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00404}00404     msg2.command = VehicleCommand::VEHICLE\_CMD\_COMPONENT\_ARM\_DISARM;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00405}00405     msg2.target\_system = 1+roverid;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00406}00406     msg2.target\_component = 0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00407}00407     msg2.source\_system = 1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00408}00408     msg2.source\_component = 1;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00409}00409     msg2.from\_external = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00410}00410 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00411}00411     OffboardControlMode msg3\{\};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00412}00412     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00413}00413     msg3.position = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00414}00414     msg3.velocity = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00415}00415     msg3.acceleration = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00416}00416     msg3.attitude = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00417}00417     msg3.body\_rate = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00418}00418 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00419}00419     \textcolor{keywordtype}{bool} firsttime = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00420}00420     \textcolor{keywordflow}{while}(rover\_action[roverid].size()>0)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00421}00421         \textcolor{keywordtype}{int} action\_dest = rover\_action[roverid].front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00422}00422         rover\_action[roverid].pop\_front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00423}00423         TrajectorySetpoint msg4\{\};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00424}00424         }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00425}00425         \textcolor{keywordtype}{double} x\_dest = rover\_x[roverid].front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00426}00426         \textcolor{keywordtype}{double} y\_dest = rover\_y[roverid].front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00427}00427         \textcolor{keywordtype}{double} z\_dest = rover\_z[roverid].front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00428}00428         msg4.x = x\_dest;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00429}00429         msg4.y = y\_dest;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00430}00430         msg4.z = z\_dest;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00431}00431         rover\_x[roverid].pop\_front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00432}00432         rover\_y[roverid].pop\_front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00433}00433         rover\_z[roverid].pop\_front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00434}00434 \textcolor{preprocessor}{        \#if TEST\_MODE}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00435}00435             msg4.z = 0.0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00436}00436 \textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00437}00437         msg4.yaw = 0.0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00438}00438         std::cout<<\textcolor{stringliteral}{"{}Rover "{}}<<roverid<<\textcolor{stringliteral}{"{}: action: "{}}<<action\_dest<<\textcolor{stringliteral}{"{} x: "{}}<<x\_dest<<\textcolor{stringliteral}{"{} y: "{}}<<y\_dest<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00439}00439 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00440}00440         \textcolor{keywordtype}{int} offboard\_setpoint\_counter\_ = 0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00441}00441         \textcolor{keywordtype}{double} dist\_from\_dest=DOUBLE\_MAX;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00442}00442         \textcolor{keywordtype}{int} cont =0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00443}00443 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00444}00444         \textcolor{keywordflow}{if}(action\_dest==2)\{ \textcolor{comment}{//actio==2 means move rover at coodrinates}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00445}00445             \textcolor{keywordflow}{do}\{ }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00446}00446                 odom\_callback\_rover(roverid);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00447}00447                 dist\_from\_dest=sqrt(((x\_rover[roverid]-\/x\_dest)*(x\_rover[roverid]-\/x\_dest))+((y\_rover[roverid]-\/y\_dest)*(y\_rover[roverid]-\/y\_dest))\textcolor{comment}{/*+((z\_rover[roverid]-\/z\_dest)*(z\_rover[roverid]-\/z\_dest))*/});   \textcolor{comment}{//calculate distance from target}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00448}00448 \textcolor{preprocessor}{                \#if DEBUG\_MODE}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00449}00449                     std::cout<<\textcolor{stringliteral}{"{}distance from target:"{}}<<dist\_from\_dest<<std::endl;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00450}00450                     print\_pos\_rover(0);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00451}00451 \textcolor{preprocessor}{                \#endif}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00452}00452                 \textcolor{keywordflow}{if} (offboard\_setpoint\_counter\_ == 11 \&\& firsttime) \{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00453}00453                     vehicle\_command\_publisher\_rover[roverid]-\/>publish(msg);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00454}00454                     vehicle\_command\_publisher\_rover[roverid]-\/>publish(msg2);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00455}00455                 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00456}00456                 offboard\_control\_mode\_publisher\_rover[roverid]-\/>publish(msg3);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00457}00457                 trajectory\_setpoint\_publisher\_rover[roverid]-\/>publish(msg4);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00458}00458                 \textcolor{keywordflow}{if} (offboard\_setpoint\_counter\_ < 11) \{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00459}00459                     offboard\_setpoint\_counter\_++;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00460}00460                 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00461}00461                 rclcpp::spin\_some(node\_publisher\_rover[roverid]);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00462}00462                 delay(100);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00463}00463                 cont++;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00464}00464                 \textcolor{keywordflow}{if}(cont==100)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00465}00465                     cont=0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00466}00466                     print\_pos\_rover(0);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00467}00467                 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00468}00468             \}\textcolor{keywordflow}{while}(dist\_from\_dest>1.5);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00469}00469             firsttime = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00470}00470         \}\textcolor{keywordflow}{else}\{  \textcolor{comment}{//the planner service returned a wrong id}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00471}00471             std::cout<<\textcolor{stringliteral}{"{}Errore action != 2\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00472}00472         \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00473}00473         }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00474}00474     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00475}00475     std::cout<<\textcolor{stringliteral}{"{}Rover "{}}<<roverid<<\textcolor{stringliteral}{"{} arrived at destination\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00476}00476 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00477}00477 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00478}00478 \textcolor{keywordtype}{int} cont\_callback = 0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00479}00479 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00489}00489 \textcolor{keywordtype}{void} ui\_callback(\textcolor{keyword}{const} interfaces::msg::Mymsg::SharedPtr msg)\{ }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00490}00490     cont\_callback++;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00491}00491 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00492}00492     \textcolor{keywordtype}{int} length = msg-\/>length;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00493}00493 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00494}00494     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<length;i++)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00495}00495         \textcolor{keywordtype}{int} action = msg-\/>action[i];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00496}00496         \textcolor{keywordtype}{double} x = msg-\/>x[i];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00497}00497         \textcolor{keywordtype}{double} y = msg-\/>y[i];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00498}00498         \textcolor{keywordtype}{double} z = msg-\/>z[i];}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00499}00499 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00500}00500         \textcolor{keywordflow}{if}(msg-\/>vehicle[i]==\textcolor{stringliteral}{"{}d1"{}})\{  \textcolor{comment}{//each action is stored in the list of the vehicle that will perform that action (done in both first and second call)}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00501}00501             drone\_action[0].push\_back(action);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00502}00502             drone\_x[0].push\_back(x);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00503}00503             drone\_y[0].push\_back(y);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00504}00504             drone\_z[0].push\_back(z);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00505}00505         \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(msg-\/>vehicle[i]==\textcolor{stringliteral}{"{}d2"{}})\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00506}00506             drone\_action[1].push\_back(action);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00507}00507             drone\_x[1].push\_back(x);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00508}00508             drone\_y[1].push\_back(y);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00509}00509             drone\_z[1].push\_back(z);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00510}00510         \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00511}00511             rover\_action[0].push\_back(action);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00512}00512             rover\_x[0].push\_back(x);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00513}00513             rover\_y[0].push\_back(y);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00514}00514             rover\_z[0].push\_back(z);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00515}00515         \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00516}00516     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00517}00517     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00518}00518 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00519}00519     \textcolor{keywordflow}{if}(cont\_callback==1)\{   \textcolor{comment}{//first time the callback is called}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00520}00520         \textcolor{keyword}{auto} request = interfaces::msg::MsgRet();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00521}00521 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00522}00522         \textcolor{comment}{//get the last position of each vehicle (origin if the vehicle didn't move) and save it to calculate the return path}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00523}00523         \textcolor{keywordflow}{if}(rover\_x[0].size()!=0)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00524}00524             request.x\_rover = rover\_x[0].back();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00525}00525             request.y\_rover = rover\_y[0].back();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00526}00526         \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00527}00527             request.x\_rover = 0.0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00528}00528             request.y\_rover = 0.0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00529}00529         \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00530}00530 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00531}00531         \textcolor{keywordflow}{if}(drone\_x[0].size()!=0)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00532}00532             request.x\_drone\_0 = drone\_x[0].back();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00533}00533             request.y\_drone\_0 = drone\_y[0].back();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00534}00534             request.z\_drone\_0 = drone\_z[0].back();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00535}00535         \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00536}00536             request.x\_drone\_0 = 0.0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00537}00537             request.y\_drone\_0 = 0.0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00538}00538             request.z\_drone\_0 = 0.0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00539}00539         \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00540}00540 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00541}00541         \textcolor{keywordflow}{if}(drone\_x[1].size()!=0)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00542}00542             request.x\_drone\_1 = drone\_x[1].back();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00543}00543             request.y\_drone\_1 = drone\_y[1].back();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00544}00544             request.z\_drone\_1 = drone\_z[1].back();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00545}00545         \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00546}00546             request.x\_drone\_1 = 0.0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00547}00547             request.y\_drone\_1 = 0.0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00548}00548             request.z\_drone\_1 = 0.0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00549}00549         \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00550}00550 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00551}00551         delay(5000);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00552}00552         client\_return-\/>publish(request);    \textcolor{comment}{//publish on the "{}/ret"{} topic the previous positions to calculate the return path}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00553}00553     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00554}00554     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00555}00555     \textcolor{keywordflow}{if}(cont\_callback==2)\{   \textcolor{comment}{//second time the callback is called (return path)}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00556}00556         std::cout<<\textcolor{stringliteral}{"{}Drone 0: \# commands: "{}}<<drone\_action[0].size()<<\textcolor{stringliteral}{"{}\(\backslash\)nDrone 1: \# commands: "{}}<<drone\_action[1].size()<<\textcolor{stringliteral}{"{}\(\backslash\)nRover: \# commands: "{}}<<rover\_action[0].size()<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00557}00557         \textcolor{comment}{//start all the missions}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00558}00558         std::thread mission0(perform\_mission\_drone,0);  }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00559}00559         std::thread mission1(perform\_mission\_drone,1);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00560}00560         std::thread mission2(perform\_mission\_rover,0);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00561}00561 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00562}00562         mission0.join();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00563}00563         mission1.join();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00564}00564         mission2.join();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00565}00565     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00566}00566 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00567}00567 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00568}00568 \textcolor{keywordtype}{void} my\_demo();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00569}00569 \textcolor{keywordtype}{void} position\_callback(\textcolor{keyword}{const} interfaces::msg::Posmsg::SharedPtr msg) \{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00570}00570     std::cout << \textcolor{stringliteral}{"{}position callback: "{}} << msg << \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00571}00571 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00572}00572     my\_demo();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00573}00573 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00574}00574 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00578}00578 \textcolor{keywordtype}{void} init\_all(\textcolor{keywordtype}{int} argc,\textcolor{keywordtype}{char}* argv[])\{   }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00579}00579     rclcpp::init(argc, argv);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00580}00580     node\_ui =rclcpp::Node::make\_shared(\textcolor{stringliteral}{"{}ui\_subscriber"{}});}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00581}00581     node\_return = rclcpp::Node::make\_shared(\textcolor{stringliteral}{"{}return\_client"{}});}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00582}00582     node\_position =rclcpp::Node::make\_shared(\textcolor{stringliteral}{"{}position\_subscriber"{}});}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00583}00583 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00584}00584     ui\_subscriber = node\_ui-\/>create\_subscription<interfaces::msg::Mymsg>(\textcolor{stringliteral}{"{}/ui"{}},10, ui\_callback);   \textcolor{comment}{//subscribe to "{}/ui"{} to receive actions for the vehicle to perform}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00585}00585     position\_subscriber = node\_position-\/>create\_subscription<interfaces::msg::Posmsg>(\textcolor{stringliteral}{"{}/pos"{}},10, position\_callback);   \textcolor{comment}{//subscribe to "{}/ui"{} to receive actions for the vehicle to perform}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00586}00586     client\_return = node\_return-\/>create\_publisher<interfaces::msg::MsgRet>(\textcolor{stringliteral}{"{}/ret"{}},10); \textcolor{comment}{//client to publish on "{}/ret"{} to send to the ui the necessary informations to calculate the return path}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00587}00587     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00588}00588     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00589}00589     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<NDRONE;i++)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00590}00590         node\_publisher\_drone[i] = rclcpp::Node::make\_shared(\textcolor{stringliteral}{"{}minimal\_publisher\_drone"{}}+std::to\_string(i));}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00591}00591         node\_subscriber\_drone[i] = rclcpp::Node::make\_shared(\textcolor{stringliteral}{"{}minimal\_subscriber\_drone"{}}+std::to\_string(i));}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00592}00592         node\_image[i] = rclcpp::Node::make\_shared(\textcolor{stringliteral}{"{}image\_subscriber\_drone"{}}+std::to\_string(i));}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00593}00593         node\_depth[i] = rclcpp::Node::make\_shared(\textcolor{stringliteral}{"{}range\_subscriber\_drone"{}}+std::to\_string(i));}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00594}00594 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00595}00595         serial[i]=0;    \textcolor{comment}{//serial number of the photos taken by every drone (initialized to 0)}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00596}00596 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00597}00597         offboard\_control\_mode\_publisher\_drone[i] = node\_publisher\_drone[i]-\/>create\_publisher<OffboardControlMode>(\textcolor{stringliteral}{"{}iris"{}}+std::to\_string(i)+\textcolor{stringliteral}{"{}/fmu/offboard\_control\_mode/in"{}},10);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00598}00598         trajectory\_setpoint\_publisher\_drone[i] = node\_publisher\_drone[i]-\/>create\_publisher<TrajectorySetpoint>(\textcolor{stringliteral}{"{}iris"{}}+std::to\_string(i)+\textcolor{stringliteral}{"{}/fmu/trajectory\_setpoint/in"{}},10);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00599}00599         vehicle\_command\_publisher\_drone[i] = node\_publisher\_drone[i]-\/>create\_publisher<VehicleCommand>(\textcolor{stringliteral}{"{}iris"{}}+std::to\_string(i)+\textcolor{stringliteral}{"{}/fmu/vehicle\_command/in"{}},10);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00600}00600 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00601}00601         odometry\_subscriber\_drone[i]=node\_subscriber\_drone[i]-\/>create\_subscription<VehicleOdometry>(\textcolor{stringliteral}{"{}iris"{}}+std::to\_string(i)+\textcolor{stringliteral}{"{}/fmu/vehicle\_odometry/out"{}},10,save\_drone\_position);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00602}00602         }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00603}00603         test\_image[i] = node\_image[i]-\/>create\_subscription<sensor\_msgs::msg::Image>(\textcolor{stringliteral}{"{}/custom\_ns"{}}+std::to\_string(i+1)+\textcolor{stringliteral}{"{}/camera"{}}+std::to\_string(i+1)+\textcolor{stringliteral}{"{}/image\_raw"{}},10,image\_callback);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00604}00604         test\_depth[i] = node\_depth[i]-\/>create\_subscription<sensor\_msgs::msg::Range>(\textcolor{stringliteral}{"{}/ultrasonic\_sensor\_"{}}+std::to\_string(i+1),1,depth\_callback);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00605}00605     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00606}00606 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00607}00607     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<NROVER;i++)\{      }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00608}00608         node\_publisher\_rover[i] = rclcpp::Node::make\_shared(\textcolor{stringliteral}{"{}minimal\_publisher\_rover"{}}+std::to\_string(i));}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00609}00609         node\_subscriber\_rover[i] = rclcpp::Node::make\_shared(\textcolor{stringliteral}{"{}minimal\_subscriber\_rover"{}}+std::to\_string(i));}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00610}00610 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00611}00611         offboard\_control\_mode\_publisher\_rover[i] = node\_publisher\_rover[i]-\/>create\_publisher<OffboardControlMode>(\textcolor{stringliteral}{"{}rover"{}}+std::to\_string(i)+\textcolor{stringliteral}{"{}/fmu/offboard\_control\_mode/in"{}},10);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00612}00612         trajectory\_setpoint\_publisher\_rover[i] = node\_publisher\_rover[i]-\/>create\_publisher<TrajectorySetpoint>(\textcolor{stringliteral}{"{}rover"{}}+std::to\_string(i)+\textcolor{stringliteral}{"{}/fmu/trajectory\_setpoint/in"{}},10);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00613}00613         vehicle\_command\_publisher\_rover[i] = node\_publisher\_rover[i]-\/>create\_publisher<VehicleCommand>(\textcolor{stringliteral}{"{}rover"{}}+std::to\_string(i)+\textcolor{stringliteral}{"{}/fmu/vehicle\_command/in"{}},10);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00614}00614 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00615}00615         odometry\_subscriber\_rover[i]=node\_subscriber\_rover[i]-\/>create\_subscription<VehicleOdometry>(\textcolor{stringliteral}{"{}rover"{}}+std::to\_string(i)+\textcolor{stringliteral}{"{}/fmu/vehicle\_odometry/out"{}},10,save\_rover\_position);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00616}00616     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00617}00617     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00618}00618 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00619}00619 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00625}00625 \textcolor{keywordtype}{void} perform\_mission\_drone(\textcolor{keywordtype}{int} droneid)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00626}00626     \textcolor{keywordtype}{double} x,y,z;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00627}00627     \textcolor{keywordtype}{int} action;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00628}00628     \textcolor{keywordflow}{while}(drone\_action[droneid].size()>0)\{ \textcolor{comment}{//iterate on all actions}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00629}00629         \textcolor{comment}{//perform 1 action at time}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00630}00630 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00631}00631         \textcolor{comment}{//get the first element of the lists (drone\_?\_action contains the action to perform while drone\_?\_x, drone\_?\_y, drone\_?\_z contains the coordinates)}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00632}00632         action = drone\_action[droneid].front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00633}00633         drone\_action[droneid].pop\_front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00634}00634 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00635}00635         x = drone\_x[droneid].front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00636}00636         drone\_x[droneid].pop\_front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00637}00637 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00638}00638         y = drone\_y[droneid].front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00639}00639         drone\_y[droneid].pop\_front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00640}00640 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00641}00641         \textcolor{keywordflow}{if}(action!=5)}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00642}00642             z = drone\_z[droneid].front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00643}00643         drone\_z[droneid].pop\_front();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00644}00644 \textcolor{preprocessor}{        \#if TEST\_MODE}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00645}00645             z =200.0;}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00646}00646 \textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00647}00647 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00648}00648         std::cout<<\textcolor{stringliteral}{"{}Drone: "{}}<<droneid<<\textcolor{stringliteral}{"{} action: "{}}<<action<<\textcolor{stringliteral}{"{} x: "{}}<<x<<\textcolor{stringliteral}{"{} y: "{}}<<y<<\textcolor{stringliteral}{"{} z: "{}}<<z<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00649}00649 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00650}00650         \textcolor{keywordflow}{switch} (action)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00651}00651             \textcolor{keywordflow}{case} 1:\{    \textcolor{comment}{//move the drone to destination}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00652}00652                 \textcolor{keywordflow}{try}\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00653}00653                     position\_drone(droneid,x,y,z,PI); }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00654}00654                 \}\textcolor{keywordflow}{catch}(...)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00655}00655                     std::cout<<droneid<<\textcolor{stringliteral}{"{} "{}}<<action<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}}; std::perror(\textcolor{stringliteral}{"{}Error"{}});}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00656}00656                 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00657}00657                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00658}00658             \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00659}00659             \textcolor{keywordflow}{case} 2:\{    \textcolor{comment}{//action = 2 only for rovers}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00660}00660                 std::cout<<\textcolor{stringliteral}{"{}Error! Drone "{}}<<droneid<<\textcolor{stringliteral}{"{} cannot perform action with value 2!\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00661}00661                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00662}00662             \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00663}00663             \textcolor{keywordflow}{case} 3:\{    \textcolor{comment}{//takeoff}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00664}00664                 \textcolor{keywordflow}{try}\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00665}00665                     takeoff\_drone(droneid,z);                    }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00666}00666                 \}\textcolor{keywordflow}{catch}(...)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00667}00667                     std::cout<<droneid<<\textcolor{stringliteral}{"{} "{}}<<action<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}}; std::perror(\textcolor{stringliteral}{"{}Error"{}});}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00668}00668                 \}   }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00669}00669                 \textcolor{keywordflow}{break};        }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00670}00670             \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00671}00671             \textcolor{keywordflow}{case} 4:\{    \textcolor{comment}{//land}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00672}00672                 \textcolor{keywordflow}{try}\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00673}00673                     land\_at\_actual\_location\_drone(droneid);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00674}00674                 \}\textcolor{keywordflow}{catch}(...)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00675}00675                     std::cout<<droneid<<\textcolor{stringliteral}{"{} "{}}<<action<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}}; std::perror(\textcolor{stringliteral}{"{}Error"{}});}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00676}00676                 \}  }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00677}00677                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00678}00678             \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00679}00679             \textcolor{keywordflow}{case} 5:\{    \textcolor{comment}{//move to destination, take photo, turn 180 degrees, take photo}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00680}00680                 \textcolor{keywordflow}{try}\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00681}00681                     odom\_callback\_drone(droneid);   \textcolor{comment}{//get position wrt the start location}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00682}00682                     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00683}00683                     \textcolor{comment}{//position\_drone(droneid,x,y,z,PI);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00684}00684                     \textcolor{comment}{/*delay(4000);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00685}00685 \textcolor{comment}{                    get\_depth(droneid); //get distance from terrain}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00686}00686 \textcolor{comment}{                    double new\_z = -\/z\_drone[droneid] -\/ z\_sensor[droneid] + 5.0;  //calculate the height wrt the starting location that is 5 meters above the ground in the point that the drone is.}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00687}00687 \textcolor{comment}{                    std::cout<<"{}Distance from terrain: "{}<<z\_sensor[droneid]<<"{} height from spawn: "{}<<-\/z\_drone[droneid]<<"{} target height: "{}<<new\_z<<"{}\(\backslash\)n"{};*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00688}00688                     position\_drone(droneid,x,y,z,PI);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00689}00689                     delay(2000);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00690}00690                     get\_image(droneid);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00691}00691                     position\_drone(droneid,x,y,z,0.0);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00692}00692                     delay(2000);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00693}00693                     get\_image(droneid);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00694}00694                 \}\textcolor{keywordflow}{catch}(...)\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00695}00695                     std::cout<<droneid<<\textcolor{stringliteral}{"{} "{}}<<action<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}}; std::perror(\textcolor{stringliteral}{"{}Error"{}});}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00696}00696                 \}  }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00697}00697                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00698}00698             \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00699}00699             \textcolor{keywordflow}{default}:\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00700}00700                 std::cout<<\textcolor{stringliteral}{"{}Error! Wrong action value!\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00701}00701                 std::cout<<\textcolor{stringliteral}{"{}Message: action:"{}}<<action<<\textcolor{stringliteral}{"{} drone: "{}}<<droneid<<\textcolor{stringliteral}{"{} x: "{}}<<x<<\textcolor{stringliteral}{"{} y: "{}}<<y<<\textcolor{stringliteral}{"{} z: "{}}<<z<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00702}00702                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00703}00703             \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00704}00704         \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00705}00705         delay(1000);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00706}00706     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00707}00707     std::cout<<\textcolor{stringliteral}{"{}Drone "{}}<<droneid<<\textcolor{stringliteral}{"{} finished\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00708}00708 \}   }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00709}00709 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00710}00710 \textcolor{keywordtype}{void} threadDrone() \{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00711}00711     std::cout << \textcolor{stringliteral}{"{}DEMO> Taking off..."{}} << \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00712}00712     \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00713}00713         takeoff\_drone(0,30);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00714}00714     \} \textcolor{keywordflow}{catch}(...) \{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00715}00715         std::cout << \textcolor{stringliteral}{"{}ERRORE!"{}} << \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00716}00716     \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00717}00717     delay(1000);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00718}00718 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00719}00719     std::cout << \textcolor{stringliteral}{"{}DEMO> Agent in position."{}} << \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00720}00720 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00721}00721     std::cout << \textcolor{stringliteral}{"{}DEMO> Going to destination (-\/350, -\/350, 40)..."{}} << \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00722}00722     position\_drone(0, -\/350, -\/350, 30, PI);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00723}00723     delay(1000);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00724}00724 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00725}00725 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00726}00726 \textcolor{keywordtype}{void} my\_demo() \{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00727}00727     delay(5000);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00728}00728 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00729}00729     std::thread myMission(threadDrone);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00730}00730     myMission.join();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00731}00731 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00732}00732 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00736}00736 \textcolor{keywordtype}{void} perform\_demo()\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00737}00737     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00738}00738     drone\_action[0].push\_back(3);    \textcolor{comment}{//takeoff drone 0}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00739}00739     drone\_x[0].push\_back(0.0);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00740}00740     drone\_y[0].push\_back(0.0);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00741}00741     drone\_z[0].push\_back(60.0);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00742}00742 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00743}00743     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00744}00744     drone\_action[0].push\_back(1);   \textcolor{comment}{//move drone 0}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00745}00745     drone\_x[0].push\_back(-\/350.0);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00746}00746     drone\_y[0].push\_back(-\/350.0);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00747}00747     drone\_z[0].push\_back(152.0);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00748}00748     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00749}00749 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00750}00750     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00751}00751 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00752}00752     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00753}00753 \textcolor{comment}{    drone\_action[0].push\_back(1); //move drone 0}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00754}00754 \textcolor{comment}{    drone\_x[0].push\_back(-\/700.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00755}00755 \textcolor{comment}{    drone\_y[0].push\_back(0.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00756}00756 \textcolor{comment}{    drone\_z[0].push\_back(228.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00757}00757 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00758}00758 \textcolor{comment}{    drone\_action[0].push\_back(1); //move drone 0}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00759}00759 \textcolor{comment}{    drone\_x[0].push\_back(-\/1050.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00760}00760 \textcolor{comment}{    drone\_y[0].push\_back(350.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00761}00761 \textcolor{comment}{    drone\_z[0].push\_back(314.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00762}00762 \textcolor{comment}{    }}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00763}00763 \textcolor{comment}{    drone\_action[0].push\_back(5); //photo routine drone 0}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00764}00764 \textcolor{comment}{    drone\_x[0].push\_back(-\/1345.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00765}00765 \textcolor{comment}{    drone\_y[0].push\_back(631.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00766}00766 \textcolor{comment}{    drone\_z[0].push\_back(467.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00767}00767 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00768}00768 \textcolor{comment}{    /*}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00769}00769 \textcolor{comment}{    drone\_action[1].push\_back(3);    //takeoff drone 1}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00770}00770 \textcolor{comment}{    drone\_x[1].push\_back(0.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00771}00771 \textcolor{comment}{    drone\_y[1].push\_back(0.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00772}00772 \textcolor{comment}{    drone\_z[1].push\_back(40.0);*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00773}00773 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00774}00774 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00775}00775     \textcolor{comment}{/*drone\_action[0].push\_back(1);    //move drone 0}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00776}00776 \textcolor{comment}{    drone\_x[0].push\_back(0.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00777}00777 \textcolor{comment}{    drone\_y[0].push\_back(40.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00778}00778 \textcolor{comment}{    drone\_z[0].push\_back(40.0);*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00779}00779     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00780}00780     \textcolor{comment}{/*drone\_action[1].push\_back(1);    //move drone 1}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00781}00781 \textcolor{comment}{    drone\_x[1].push\_back(0.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00782}00782 \textcolor{comment}{    drone\_y[1].push\_back(40.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00783}00783 \textcolor{comment}{    drone\_z[1].push\_back(40.0);*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00784}00784     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00785}00785 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00786}00786    \textcolor{comment}{/* drone\_action[0].push\_back(1);    //move drone 0}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00787}00787 \textcolor{comment}{    drone\_x[0].push\_back(100.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00788}00788 \textcolor{comment}{    drone\_y[0].push\_back(70.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00789}00789 \textcolor{comment}{    drone\_z[0].push\_back(20.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00790}00790 \textcolor{comment}{    }}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00791}00791 \textcolor{comment}{    drone\_action[1].push\_back(1);    //move drone 1}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00792}00792 \textcolor{comment}{    drone\_x[1].push\_back(100.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00793}00793 \textcolor{comment}{    drone\_y[1].push\_back(70.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00794}00794 \textcolor{comment}{    drone\_z[1].push\_back(20.0);*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00795}00795 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00796}00796     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00797}00797     \textcolor{comment}{/*drone\_action[0].push\_back(5);    //take photo drone 0}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00798}00798 \textcolor{comment}{    drone\_x[0].push\_back(110.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00799}00799 \textcolor{comment}{    drone\_y[0].push\_back(45.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00800}00800 \textcolor{comment}{    drone\_z[0].push\_back(40.0);*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00801}00801     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00802}00802     \textcolor{comment}{/*drone\_action[1].push\_back(5);    //take photo drone 1}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00803}00803 \textcolor{comment}{    drone\_x[1].push\_back(110.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00804}00804 \textcolor{comment}{    drone\_y[1].push\_back(45.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00805}00805 \textcolor{comment}{    drone\_z[1].push\_back(40.0);*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00806}00806 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00807}00807    \textcolor{comment}{/* drone\_action[0].push\_back(4);    //land drone 0}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00808}00808 \textcolor{comment}{    drone\_x[0].push\_back(110.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00809}00809 \textcolor{comment}{    drone\_y[0].push\_back(45.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00810}00810 \textcolor{comment}{    drone\_z[0].push\_back(0.0);*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00811}00811     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00812}00812    \textcolor{comment}{/* drone\_action[1].push\_back(4);    //land drone 1}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00813}00813 \textcolor{comment}{    drone\_x[1].push\_back(110.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00814}00814 \textcolor{comment}{    drone\_y[1].push\_back(45.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00815}00815 \textcolor{comment}{    drone\_z[1].push\_back(0.0);*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00816}00816 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00817}00817 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00818}00818 \textcolor{comment}{    rover\_action[0].push\_back(2);  //move rover}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00819}00819 \textcolor{comment}{    rover\_x[0].push\_back(-\/350.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00820}00820 \textcolor{comment}{    rover\_y[0].push\_back(-\/350.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00821}00821 \textcolor{comment}{    rover\_z[0].push\_back(0.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00822}00822 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00823}00823 \textcolor{comment}{    rover\_action[0].push\_back(2);  //move rover}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00824}00824 \textcolor{comment}{    rover\_x[0].push\_back(-\/700.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00825}00825 \textcolor{comment}{    rover\_y[0].push\_back(-\/700.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00826}00826 \textcolor{comment}{    rover\_z[0].push\_back(0.0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00827}00827 \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00828}00828 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00829}00829     delay(5000);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00830}00830 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00831}00831 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00832}00832     std::cout<<\textcolor{stringliteral}{"{}Drone 0: \# commands: "{}}<<drone\_action[0].size()<<\textcolor{stringliteral}{"{}\(\backslash\)nDrone 1: \# commands: "{}}<<drone\_action[1].size()<<\textcolor{stringliteral}{"{}\(\backslash\)nRover: \# commands: "{}}<<rover\_action[0].size()<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00833}00833     \textcolor{comment}{//start all the missions}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00834}00834     std::thread mission0(perform\_mission\_drone,0);  }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00835}00835     \textcolor{comment}{//std::thread mission1(perform\_mission\_drone,1);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00836}00836     \textcolor{comment}{//std::thread mission2(perform\_mission\_rover,0);}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00837}00837 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00838}00838     mission0.join();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00839}00839     \textcolor{comment}{//mission1.join();}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00840}00840     \textcolor{comment}{//mission2.join();}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00841}00841 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00842}00842 \}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00843}00843 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00844}00844 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}* argv[])\{}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00845}00845     init\_all(argc,argv);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00846}00846     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00847}00847     std::cout<<\textcolor{stringliteral}{"{}Demo mode is: "{}}<<(DEMO\_MODE == \textcolor{keyword}{true}? \textcolor{stringliteral}{"{}True"{}}:\textcolor{stringliteral}{"{}False"{}})<<\textcolor{stringliteral}{"{}\(\backslash\)nTest mode is: "{}}<<(TEST\_MODE== \textcolor{keyword}{true}? \textcolor{stringliteral}{"{}True"{}}:\textcolor{stringliteral}{"{}False"{}})<<\textcolor{stringliteral}{"{}\(\backslash\)nDebug mode is: "{}}<<(DEBUG\_MODE== \textcolor{keyword}{true}? \textcolor{stringliteral}{"{}True"{}}:\textcolor{stringliteral}{"{}False"{}})<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00848}00848 }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00849}00849 \textcolor{preprocessor}{    \#if DEMO\_MODE}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00850}00850         \textcolor{comment}{//perform\_demo();}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00851}00851         my\_demo();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00852}00852 \textcolor{preprocessor}{    \#else}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00853}00853         \textcolor{comment}{//perform\_demo();}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00854}00854         rclcpp::spin(node\_position);}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00855}00855 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00856}00856     }
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00857}00857     rclcpp::shutdown();}
+\DoxyCodeLine{\Hypertarget{control__vanilla_8cpp_source_l00858}00858 \}}
+
+\end{DoxyCode}

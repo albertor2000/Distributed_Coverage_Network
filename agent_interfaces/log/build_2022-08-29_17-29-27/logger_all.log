@@ -1,0 +1,134 @@
+[0.278s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.278s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f882402fe50>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=12, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f882402fe50>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7f8824039400>)
+[0.312s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.312s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.312s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.312s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.312s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.312s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.312s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/drone/Planning-drones-ROS2/agent_interfaces'
+[0.312s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.312s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.312s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.313s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.313s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.313s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.313s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.313s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.313s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.340s] DEBUG:colcon.colcon_core.package_identification:Package '.' with type 'ros.ament_cmake' and name 'agent_interfaces'
+[0.340s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.340s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.340s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.340s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.340s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.369s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.369s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.373s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 8 installed packages in /home/drone/Planning-drones-ROS2/install
+[0.374s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /home/drone/px4_ros_com_ros2/install
+[0.376s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 294 installed packages in /opt/ros/foxy
+[0.378s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.460s] WARNING:colcon.colcon_core.package_selection:Some selected packages are already built in one or more underlay workspaces:
+	'agent_interfaces' is in: /home/drone/Planning-drones-ROS2/install/agent_interfaces
+If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
+If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
+
+If you understand the risks and want to override a package anyways, add the following to the command line:
+	--allow-overriding agent_interfaces
+
+This may be promoted to an error in a future release of colcon-override-check.
+[0.463s] Level 5:colcon.colcon_core.verb:set package 'agent_interfaces' build argument 'cmake_args' from command line to 'None'
+[0.463s] Level 5:colcon.colcon_core.verb:set package 'agent_interfaces' build argument 'cmake_target' from command line to 'None'
+[0.463s] Level 5:colcon.colcon_core.verb:set package 'agent_interfaces' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.463s] Level 5:colcon.colcon_core.verb:set package 'agent_interfaces' build argument 'cmake_clean_cache' from command line to 'False'
+[0.463s] Level 5:colcon.colcon_core.verb:set package 'agent_interfaces' build argument 'cmake_clean_first' from command line to 'False'
+[0.463s] Level 5:colcon.colcon_core.verb:set package 'agent_interfaces' build argument 'cmake_force_configure' from command line to 'False'
+[0.463s] Level 5:colcon.colcon_core.verb:set package 'agent_interfaces' build argument 'ament_cmake_args' from command line to 'None'
+[0.463s] Level 5:colcon.colcon_core.verb:set package 'agent_interfaces' build argument 'catkin_cmake_args' from command line to 'None'
+[0.463s] Level 5:colcon.colcon_core.verb:set package 'agent_interfaces' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.463s] DEBUG:colcon.colcon_core.verb:Building package 'agent_interfaces' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces', 'merge_install': False, 'path': '/home/drone/Planning-drones-ROS2/agent_interfaces', 'symlink_install': False, 'test_result_base': None}
+[0.464s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.470s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.471s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/drone/Planning-drones-ROS2/agent_interfaces' with build type 'ament_cmake'
+[0.471s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/drone/Planning-drones-ROS2/agent_interfaces'
+[0.478s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.478s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.478s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.496s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/drone/Planning-drones-ROS2/install/user_interface:/home/drone/Planning-drones-ROS2/install/py_planner:/home/drone/Planning-drones-ROS2/install/agents_pos_service:/opt/ros/foxy /usr/bin/cmake /home/drone/Planning-drones-ROS2/agent_interfaces -DCMAKE_INSTALL_PREFIX=/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces
+[9.910s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/drone/Planning-drones-ROS2/install/user_interface:/home/drone/Planning-drones-ROS2/install/py_planner:/home/drone/Planning-drones-ROS2/install/agents_pos_service:/opt/ros/foxy /usr/bin/cmake /home/drone/Planning-drones-ROS2/agent_interfaces -DCMAKE_INSTALL_PREFIX=/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces
+[9.914s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/drone/Planning-drones-ROS2/install/user_interface:/home/drone/Planning-drones-ROS2/install/py_planner:/home/drone/Planning-drones-ROS2/install/agents_pos_service:/opt/ros/foxy /usr/bin/cmake --build /home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces -- -j12 -l12
+[13.962s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/drone/Planning-drones-ROS2/install/user_interface:/home/drone/Planning-drones-ROS2/install/py_planner:/home/drone/Planning-drones-ROS2/install/agents_pos_service:/opt/ros/foxy /usr/bin/cmake --build /home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces -- -j12 -l12
+[14.039s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/drone/Planning-drones-ROS2/install/user_interface:/home/drone/Planning-drones-ROS2/install/py_planner:/home/drone/Planning-drones-ROS2/install/agents_pos_service:/opt/ros/foxy /usr/bin/cmake --install /home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces
+[14.142s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(agent_interfaces)
+[14.143s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/drone/Planning-drones-ROS2/install/user_interface:/home/drone/Planning-drones-ROS2/install/py_planner:/home/drone/Planning-drones-ROS2/install/agents_pos_service:/opt/ros/foxy /usr/bin/cmake --install /home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces
+[14.151s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces' for CMake module files
+[14.152s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces' for CMake config files
+[14.152s] Level 1:colcon.colcon_core.shell:create_environment_hook('agent_interfaces', 'cmake_prefix_path')
+[14.154s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/cmake_prefix_path.ps1'
+[14.155s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/cmake_prefix_path.dsv'
+[14.156s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/cmake_prefix_path.sh'
+[14.157s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib'
+[14.157s] Level 1:colcon.colcon_core.shell:create_environment_hook('agent_interfaces', 'ld_library_path_lib')
+[14.160s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/ld_library_path_lib.ps1'
+[14.161s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/ld_library_path_lib.dsv'
+[14.161s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/ld_library_path_lib.sh'
+[14.162s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/bin'
+[14.162s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/pkgconfig/agent_interfaces.pc'
+[14.162s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages'
+[14.162s] Level 1:colcon.colcon_core.shell:create_environment_hook('agent_interfaces', 'pythonpath')
+[14.164s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/pythonpath.ps1'
+[14.165s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/pythonpath.dsv'
+[14.165s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/pythonpath.sh'
+[14.166s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/bin'
+[14.168s] INFO:colcon.colcon_core.shell:Creating package script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/package.ps1'
+[14.169s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/package.dsv'
+[14.170s] INFO:colcon.colcon_core.shell:Creating package script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/package.sh'
+[14.171s] INFO:colcon.colcon_core.shell:Creating package script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/package.bash'
+[14.172s] INFO:colcon.colcon_core.shell:Creating package script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/package.zsh'
+[14.173s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/colcon-core/packages/agent_interfaces)
+[14.240s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(agent_interfaces)
+[14.245s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces' for CMake module files
+[14.246s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces' for CMake config files
+[14.246s] Level 1:colcon.colcon_core.shell:create_environment_hook('agent_interfaces', 'cmake_prefix_path')
+[14.249s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/cmake_prefix_path.ps1'
+[14.249s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/cmake_prefix_path.dsv'
+[14.250s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/cmake_prefix_path.sh'
+[14.251s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib'
+[14.251s] Level 1:colcon.colcon_core.shell:create_environment_hook('agent_interfaces', 'ld_library_path_lib')
+[14.254s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/ld_library_path_lib.ps1'
+[14.254s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/ld_library_path_lib.dsv'
+[14.255s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/ld_library_path_lib.sh'
+[14.255s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/bin'
+[14.255s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/pkgconfig/agent_interfaces.pc'
+[14.256s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages'
+[14.256s] Level 1:colcon.colcon_core.shell:create_environment_hook('agent_interfaces', 'pythonpath')
+[14.258s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/pythonpath.ps1'
+[14.258s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/pythonpath.dsv'
+[14.259s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/hook/pythonpath.sh'
+[14.260s] Level 1:colcon.colcon_core.environment:checking '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/bin'
+[14.263s] INFO:colcon.colcon_core.shell:Creating package script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/package.ps1'
+[14.263s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/package.dsv'
+[14.264s] INFO:colcon.colcon_core.shell:Creating package script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/package.sh'
+[14.264s] INFO:colcon.colcon_core.shell:Creating package script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/package.bash'
+[14.265s] INFO:colcon.colcon_core.shell:Creating package script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/package.zsh'
+[14.265s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/colcon-core/packages/agent_interfaces)
+[14.266s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[14.267s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[14.268s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[14.268s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[14.320s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[14.320s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[14.320s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[14.320s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[14.352s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.Notifications was not provided by any .service files
+[14.352s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[14.355s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/local_setup.ps1'
+[14.356s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/drone/Planning-drones-ROS2/agent_interfaces/install/_local_setup_util_ps1.py'
+[14.358s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/setup.ps1'
+[14.360s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/local_setup.sh'
+[14.360s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/drone/Planning-drones-ROS2/agent_interfaces/install/_local_setup_util_sh.py'
+[14.361s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/setup.sh'
+[14.363s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/local_setup.bash'
+[14.363s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/setup.bash'
+[14.365s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/local_setup.zsh'
+[14.365s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/drone/Planning-drones-ROS2/agent_interfaces/install/setup.zsh'

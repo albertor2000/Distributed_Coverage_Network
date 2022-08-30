@@ -1,0 +1,373 @@
+[0.000000] (-) TimerEvent: {}
+[0.001970] (agent_interfaces) JobQueued: {'identifier': 'agent_interfaces', 'dependencies': OrderedDict()}
+[0.002061] (agent_interfaces) JobStarted: {'identifier': 'agent_interfaces'}
+[0.018325] (agent_interfaces) JobProgress: {'identifier': 'agent_interfaces', 'progress': 'cmake'}
+[0.019043] (agent_interfaces) Command: {'cmd': ['/usr/bin/cmake', '/home/drone/Planning-drones-ROS2/agent_interfaces', '-DCMAKE_INSTALL_PREFIX=/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces'], 'cwd': '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'drone'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/drone/Planning-drones-ROS2/install/tutorial_interfaces/lib:/home/drone/Planning-drones-ROS2/install/planner_interface/lib:/home/drone/Planning-drones-ROS2/install/interfaces/lib:/home/drone/Planning-drones-ROS2/install/agent_interfaces/lib:/home/drone/px4_ros_com_ros2/install/px4_ros_com/lib:/home/drone/px4_ros_com_ros2/install/px4_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/drone'), ('OLDPWD', '/home/drone/Planning-drones-ROS2'), ('ROS_PYTHON_VERSION', '3'), ('WSL_DISTRO_NAME', 'UbuntuGazebo'), ('_colcon_cd_root', '/home/drone/dev_ws'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/drone/Planning-drones-ROS2/install:/home/drone/px4_ros_com_ros2/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'drone'), ('NAME', 'LAPTOP-Q8LS440C'), ('WSL_INTEROP', '/run/WSL/25_interop'), ('PULSE_SERVER', '/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('LIBGL_ALWAYS_INDIRECT', '0'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/drone/px4_ros_com_ros2/install/px4_ros_com/bin:/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/drone/.local/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64/compiler:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/nodejs/:/mnt/c/Users/errea/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0/LocalCache/local-packages/Python310/Scripts:/mnt/c/Users/errea/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/errea/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/errea/AppData/Roaming/npm:/mnt/c/Program Files/heroku/bin:/snap/bin:/opt/gradle/gradle-6.3/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', '172.26.32.1:0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/drone/Planning-drones-ROS2/install/user_interface:/home/drone/Planning-drones-ROS2/install/tutorial_interfaces:/home/drone/Planning-drones-ROS2/install/robots_control:/home/drone/Planning-drones-ROS2/install/py_planner:/home/drone/Planning-drones-ROS2/install/planner_interface:/home/drone/Planning-drones-ROS2/install/interfaces:/home/drone/Planning-drones-ROS2/install/agents_pos_service:/home/drone/Planning-drones-ROS2/install/agent_interfaces:/home/drone/px4_ros_com_ros2/install/px4_ros_com:/home/drone/px4_ros_com_ros2/install/px4_msgs:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/drone/Planning-drones-ROS2/install/user_interface/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/tutorial_interfaces/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/py_planner/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/planner_interface/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/interfaces/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/agents_pos_service/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/agent_interfaces/lib/python3.8/site-packages:/home/drone/px4_ros_com_ros2/install/px4_msgs/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/home/drone/Planning-drones-ROS2/install/tutorial_interfaces:/home/drone/Planning-drones-ROS2/install/robots_control:/home/drone/Planning-drones-ROS2/install/planner_interface:/home/drone/Planning-drones-ROS2/install/interfaces:/home/drone/Planning-drones-ROS2/install/agent_interfaces:/home/drone/px4_ros_com_ros2/install/px4_ros_com:/home/drone/px4_ros_com_ros2/install/px4_msgs:/home/drone/Planning-drones-ROS2/install/user_interface:/home/drone/Planning-drones-ROS2/install/py_planner:/home/drone/Planning-drones-ROS2/install/agents_pos_service:/opt/ros/foxy'), ('WSLENV', '')]), 'shell': False}
+[0.098294] (-) TimerEvent: {}
+[0.198951] (-) TimerEvent: {}
+[0.299697] (-) TimerEvent: {}
+[0.400289] (-) TimerEvent: {}
+[0.453753] (agent_interfaces) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[0.500441] (-) TimerEvent: {}
+[0.600992] (-) TimerEvent: {}
+[0.701559] (-) TimerEvent: {}
+[0.743510] (agent_interfaces) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[0.801775] (-) TimerEvent: {}
+[0.890753] (agent_interfaces) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[0.902104] (-) TimerEvent: {}
+[1.002681] (-) TimerEvent: {}
+[1.064839] (agent_interfaces) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[1.076984] (agent_interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[1.102857] (-) TimerEvent: {}
+[1.203442] (-) TimerEvent: {}
+[1.231701] (agent_interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.255701] (agent_interfaces) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.257189] (agent_interfaces) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.263694] (agent_interfaces) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[1.303662] (-) TimerEvent: {}
+[1.404274] (-) TimerEvent: {}
+[1.428338] (agent_interfaces) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[1.430106] (agent_interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.504564] (-) TimerEvent: {}
+[1.589140] (agent_interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.602850] (agent_interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.603591] (agent_interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.604595] (-) TimerEvent: {}
+[1.632922] (agent_interfaces) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[1.690431] (agent_interfaces) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[1.690796] (agent_interfaces) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[1.704896] (-) TimerEvent: {}
+[1.805578] (-) TimerEvent: {}
+[1.906034] (-) TimerEvent: {}
+[2.006499] (-) TimerEvent: {}
+[2.043316] (agent_interfaces) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)\n'}
+[2.057946] (agent_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.080045] (agent_interfaces) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[2.106686] (-) TimerEvent: {}
+[2.207281] (-) TimerEvent: {}
+[2.307933] (-) TimerEvent: {}
+[2.408440] (-) TimerEvent: {}
+[2.508943] (-) TimerEvent: {}
+[2.609639] (-) TimerEvent: {}
+[2.710354] (-) TimerEvent: {}
+[2.811045] (-) TimerEvent: {}
+[2.911709] (-) TimerEvent: {}
+[3.012383] (-) TimerEvent: {}
+[3.109893] (agent_interfaces) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  \n'}
+[3.113238] (-) TimerEvent: {}
+[3.213799] (-) TimerEvent: {}
+[3.314278] (-) TimerEvent: {}
+[3.414736] (-) TimerEvent: {}
+[3.515208] (-) TimerEvent: {}
+[3.615652] (-) TimerEvent: {}
+[3.716089] (-) TimerEvent: {}
+[3.816574] (-) TimerEvent: {}
+[3.917039] (-) TimerEvent: {}
+[3.935908] (agent_interfaces) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/foxy/include  \n'}
+[4.017181] (-) TimerEvent: {}
+[4.117650] (-) TimerEvent: {}
+[4.218086] (-) TimerEvent: {}
+[4.318585] (-) TimerEvent: {}
+[4.419104] (-) TimerEvent: {}
+[4.519564] (-) TimerEvent: {}
+[4.620019] (-) TimerEvent: {}
+[4.720455] (-) TimerEvent: {}
+[4.820958] (-) TimerEvent: {}
+[4.921515] (-) TimerEvent: {}
+[5.021988] (-) TimerEvent: {}
+[5.122428] (-) TimerEvent: {}
+[5.222847] (-) TimerEvent: {}
+[5.323260] (-) TimerEvent: {}
+[5.423766] (-) TimerEvent: {}
+[5.456793] (agent_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[5.523958] (-) TimerEvent: {}
+[5.550688] (agent_interfaces) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") \n'}
+[5.624128] (-) TimerEvent: {}
+[5.719575] (agent_interfaces) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.9.2 (/opt/ros/foxy/share/ament_cmake_ros/cmake)\n'}
+[5.724553] (-) TimerEvent: {}
+[5.825134] (-) TimerEvent: {}
+[5.925650] (-) TimerEvent: {}
+[6.026120] (-) TimerEvent: {}
+[6.126595] (-) TimerEvent: {}
+[6.227061] (-) TimerEvent: {}
+[6.327665] (-) TimerEvent: {}
+[6.428295] (-) TimerEvent: {}
+[6.528712] (-) TimerEvent: {}
+[6.629165] (-) TimerEvent: {}
+[6.729567] (-) TimerEvent: {}
+[6.830019] (-) TimerEvent: {}
+[6.930546] (-) TimerEvent: {}
+[7.031154] (-) TimerEvent: {}
+[7.131615] (-) TimerEvent: {}
+[7.232135] (-) TimerEvent: {}
+[7.332595] (-) TimerEvent: {}
+[7.433092] (-) TimerEvent: {}
+[7.533534] (-) TimerEvent: {}
+[7.634038] (-) TimerEvent: {}
+[7.734493] (-) TimerEvent: {}
+[7.834941] (-) TimerEvent: {}
+[7.935488] (-) TimerEvent: {}
+[8.036138] (-) TimerEvent: {}
+[8.136774] (-) TimerEvent: {}
+[8.237418] (-) TimerEvent: {}
+[8.337926] (-) TimerEvent: {}
+[8.438447] (-) TimerEvent: {}
+[8.539060] (-) TimerEvent: {}
+[8.639522] (-) TimerEvent: {}
+[8.725344] (agent_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[8.736089] (agent_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[8.739634] (-) TimerEvent: {}
+[8.766614] (agent_interfaces) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3.5") \n'}
+[8.769733] (agent_interfaces) StdoutLine: {'line': b'-- Found python_cmake_module: 0.8.1 (/opt/ros/foxy/share/python_cmake_module/cmake)\n'}
+[8.839805] (-) TimerEvent: {}
+[8.940346] (-) TimerEvent: {}
+[9.040822] (-) TimerEvent: {}
+[9.130794] (agent_interfaces) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found suitable version "3.8.10", minimum required is "3.5") \n'}
+[9.131232] (agent_interfaces) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[9.131370] (agent_interfaces) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.8\n'}
+[9.131484] (agent_interfaces) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.8.so\n'}
+[9.140989] (-) TimerEvent: {}
+[9.158545] (agent_interfaces) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[9.241272] (-) TimerEvent: {}
+[9.264123] (agent_interfaces) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[9.341510] (-) TimerEvent: {}
+[9.349587] (agent_interfaces) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[9.356761] (agent_interfaces) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[9.358714] (agent_interfaces) StdoutLine: {'line': b'-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces/rosidl_generator_c>;/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces/rosidl_generator_c;/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces/rosidl_generator_cpp;/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces/rosidl_typesupport_fastrtps_c;/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces/rosidl_typesupport_fastrtps_cpp;$<BUILD_INTERFACE:/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces/rosidl_typesupport_introspection_c>;$<BUILD_INTERFACE:/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces/rosidl_typesupport_c>;$<BUILD_INTERFACE:/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces/rosidl_generator_cpp>;/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces/rosidl_generator_py\n'}
+[9.358894] (agent_interfaces) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[9.365141] (agent_interfaces) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[9.365407] (agent_interfaces) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[9.368202] (agent_interfaces) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[9.370778] (agent_interfaces) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[9.373014] (agent_interfaces) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the style conventions in PEP 257\n"}
+[9.379554] (agent_interfaces) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[9.379820] (agent_interfaces) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[9.382286] (agent_interfaces) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[9.390187] (agent_interfaces) StdoutLine: {'line': b'-- Configuring done\n'}
+[9.426585] (agent_interfaces) StdoutLine: {'line': b'-- Generating done\n'}
+[9.430202] (agent_interfaces) StdoutLine: {'line': b'-- Build files have been written to: /home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces\n'}
+[9.437848] (agent_interfaces) CommandEnded: {'returncode': 0}
+[9.438661] (agent_interfaces) JobProgress: {'identifier': 'agent_interfaces', 'progress': 'build'}
+[9.441285] (agent_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces', '--', '-j12', '-l12'], 'cwd': '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'drone'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/drone/Planning-drones-ROS2/install/tutorial_interfaces/lib:/home/drone/Planning-drones-ROS2/install/planner_interface/lib:/home/drone/Planning-drones-ROS2/install/interfaces/lib:/home/drone/Planning-drones-ROS2/install/agent_interfaces/lib:/home/drone/px4_ros_com_ros2/install/px4_ros_com/lib:/home/drone/px4_ros_com_ros2/install/px4_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/drone'), ('OLDPWD', '/home/drone/Planning-drones-ROS2'), ('ROS_PYTHON_VERSION', '3'), ('WSL_DISTRO_NAME', 'UbuntuGazebo'), ('_colcon_cd_root', '/home/drone/dev_ws'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/drone/Planning-drones-ROS2/install:/home/drone/px4_ros_com_ros2/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'drone'), ('NAME', 'LAPTOP-Q8LS440C'), ('WSL_INTEROP', '/run/WSL/25_interop'), ('PULSE_SERVER', '/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('LIBGL_ALWAYS_INDIRECT', '0'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/drone/px4_ros_com_ros2/install/px4_ros_com/bin:/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/drone/.local/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64/compiler:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/nodejs/:/mnt/c/Users/errea/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0/LocalCache/local-packages/Python310/Scripts:/mnt/c/Users/errea/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/errea/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/errea/AppData/Roaming/npm:/mnt/c/Program Files/heroku/bin:/snap/bin:/opt/gradle/gradle-6.3/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', '172.26.32.1:0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/drone/Planning-drones-ROS2/install/user_interface:/home/drone/Planning-drones-ROS2/install/tutorial_interfaces:/home/drone/Planning-drones-ROS2/install/robots_control:/home/drone/Planning-drones-ROS2/install/py_planner:/home/drone/Planning-drones-ROS2/install/planner_interface:/home/drone/Planning-drones-ROS2/install/interfaces:/home/drone/Planning-drones-ROS2/install/agents_pos_service:/home/drone/Planning-drones-ROS2/install/agent_interfaces:/home/drone/px4_ros_com_ros2/install/px4_ros_com:/home/drone/px4_ros_com_ros2/install/px4_msgs:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/drone/Planning-drones-ROS2/install/user_interface/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/tutorial_interfaces/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/py_planner/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/planner_interface/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/interfaces/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/agents_pos_service/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/agent_interfaces/lib/python3.8/site-packages:/home/drone/px4_ros_com_ros2/install/px4_msgs/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/home/drone/Planning-drones-ROS2/install/tutorial_interfaces:/home/drone/Planning-drones-ROS2/install/robots_control:/home/drone/Planning-drones-ROS2/install/planner_interface:/home/drone/Planning-drones-ROS2/install/interfaces:/home/drone/Planning-drones-ROS2/install/agent_interfaces:/home/drone/px4_ros_com_ros2/install/px4_ros_com:/home/drone/px4_ros_com_ros2/install/px4_msgs:/home/drone/Planning-drones-ROS2/install/user_interface:/home/drone/Planning-drones-ROS2/install/py_planner:/home/drone/Planning-drones-ROS2/install/agents_pos_service:/opt/ros/foxy'), ('WSLENV', '')]), 'shell': False}
+[9.442548] (-) TimerEvent: {}
+[9.487169] (agent_interfaces) StdoutLine: {'line': b'[  3%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[9.487801] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces__cpp\x1b[0m\n'}
+[9.503300] (agent_interfaces) StdoutLine: {'line': b'[  6%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[9.542869] (-) TimerEvent: {}
+[9.643384] (-) TimerEvent: {}
+[9.743925] (-) TimerEvent: {}
+[9.844669] (-) TimerEvent: {}
+[9.945113] (-) TimerEvent: {}
+[9.946636] (agent_interfaces) StdoutLine: {'line': b'[  6%] Built target agent_interfaces__cpp\n'}
+[9.951201] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces__rosidl_generator_c\x1b[0m\n'}
+[9.961739] (agent_interfaces) StdoutLine: {'line': b'[  9%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[9.962255] (agent_interfaces) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[9.962421] (agent_interfaces) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[9.965546] (agent_interfaces) StdoutLine: {'line': b'[ 19%] \x1b[32mBuilding C object CMakeFiles/agent_interfaces__rosidl_generator_c.dir/rosidl_generator_c/agent_interfaces/srv/detail/get_position__functions.c.o\x1b[0m\n'}
+[10.029669] (agent_interfaces) StdoutLine: {'line': b'[ 22%] \x1b[32m\x1b[1mLinking C shared library libagent_interfaces__rosidl_generator_c.so\x1b[0m\n'}
+[10.045347] (-) TimerEvent: {}
+[10.141490] (agent_interfaces) StdoutLine: {'line': b'[ 22%] Built target agent_interfaces__rosidl_generator_c\n'}
+[10.145486] (-) TimerEvent: {}
+[10.155466] (agent_interfaces) StdoutLine: {'line': b'[ 25%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[10.155981] (agent_interfaces) StdoutLine: {'line': b'[ 29%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[10.245643] (-) TimerEvent: {}
+[10.295633] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces__rosidl_typesupport_cpp\x1b[0m\n'}
+[10.314051] (agent_interfaces) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/agent_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/agent_interfaces/srv/get_position__type_support.cpp.o\x1b[0m\n'}
+[10.344047] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces__rosidl_typesupport_introspection_cpp\x1b[0m\n'}
+[10.345768] (-) TimerEvent: {}
+[10.364124] (agent_interfaces) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/agent_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/agent_interfaces/srv/detail/get_position__type_support.cpp.o\x1b[0m\n'}
+[10.430948] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces__rosidl_typesupport_fastrtps_cpp\x1b[0m\n'}
+[10.445924] (-) TimerEvent: {}
+[10.462771] (agent_interfaces) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/agent_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/agent_interfaces/srv/detail/dds_fastrtps/get_position__type_support.cpp.o\x1b[0m\n'}
+[10.537705] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces__rosidl_typesupport_c\x1b[0m\n'}
+[10.546124] (-) TimerEvent: {}
+[10.554832] (agent_interfaces) StdoutLine: {'line': b'[ 41%] \x1b[32mBuilding CXX object CMakeFiles/agent_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/agent_interfaces/srv/get_position__type_support.cpp.o\x1b[0m\n'}
+[10.580468] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces__rosidl_typesupport_introspection_c\x1b[0m\n'}
+[10.599276] (agent_interfaces) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding C object CMakeFiles/agent_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/agent_interfaces/srv/detail/get_position__type_support.c.o\x1b[0m\n'}
+[10.601659] (agent_interfaces) StdoutLine: {'line': b'[ 48%] \x1b[32m\x1b[1mLinking CXX shared library libagent_interfaces__rosidl_typesupport_c.so\x1b[0m\n'}
+[10.646327] (-) TimerEvent: {}
+[10.649603] (agent_interfaces) StdoutLine: {'line': b'[ 51%] \x1b[32m\x1b[1mLinking C shared library libagent_interfaces__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[10.737208] (agent_interfaces) StdoutLine: {'line': b'[ 51%] Built target agent_interfaces__rosidl_typesupport_c\n'}
+[10.746496] (-) TimerEvent: {}
+[10.763716] (agent_interfaces) StdoutLine: {'line': b'[ 51%] Built target agent_interfaces__rosidl_typesupport_introspection_c\n'}
+[10.816437] (agent_interfaces) StdoutLine: {'line': b'[ 54%] \x1b[32m\x1b[1mLinking CXX shared library libagent_interfaces__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[10.840668] (agent_interfaces) StdoutLine: {'line': b'[ 58%] \x1b[32m\x1b[1mLinking CXX shared library libagent_interfaces__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[10.846618] (-) TimerEvent: {}
+[10.921955] (agent_interfaces) StdoutLine: {'line': b'[ 58%] Built target agent_interfaces__rosidl_typesupport_cpp\n'}
+[10.946790] (-) TimerEvent: {}
+[10.953013] (agent_interfaces) StdoutLine: {'line': b'[ 58%] Built target agent_interfaces__rosidl_typesupport_introspection_cpp\n'}
+[11.046958] (-) TimerEvent: {}
+[11.139024] (agent_interfaces) StdoutLine: {'line': b'[ 61%] \x1b[32m\x1b[1mLinking CXX shared library libagent_interfaces__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[11.147086] (-) TimerEvent: {}
+[11.247498] (-) TimerEvent: {}
+[11.290258] (agent_interfaces) StdoutLine: {'line': b'[ 61%] Built target agent_interfaces__rosidl_typesupport_fastrtps_cpp\n'}
+[11.301033] (agent_interfaces) StdoutLine: {'line': b'[ 64%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[11.347648] (-) TimerEvent: {}
+[11.448075] (-) TimerEvent: {}
+[11.548549] (-) TimerEvent: {}
+[11.601326] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces__rosidl_typesupport_fastrtps_c\x1b[0m\n'}
+[11.621053] (agent_interfaces) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding CXX object CMakeFiles/agent_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/agent_interfaces/srv/detail/get_position__type_support_c.cpp.o\x1b[0m\n'}
+[11.648734] (-) TimerEvent: {}
+[11.749273] (-) TimerEvent: {}
+[11.849898] (-) TimerEvent: {}
+[11.950543] (-) TimerEvent: {}
+[12.051051] (-) TimerEvent: {}
+[12.079048] (agent_interfaces) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX shared library libagent_interfaces__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[12.151229] (-) TimerEvent: {}
+[12.229796] (agent_interfaces) StdoutLine: {'line': b'[ 70%] Built target agent_interfaces__rosidl_typesupport_fastrtps_c\n'}
+[12.241177] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces\x1b[0m\n'}
+[12.251353] (-) TimerEvent: {}
+[12.251704] (agent_interfaces) StdoutLine: {'line': b'[ 70%] Built target agent_interfaces\n'}
+[12.263065] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces__py\x1b[0m\n'}
+[12.275194] (agent_interfaces) StdoutLine: {'line': b'[ 74%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[12.351526] (-) TimerEvent: {}
+[12.451963] (-) TimerEvent: {}
+[12.552344] (-) TimerEvent: {}
+[12.652788] (-) TimerEvent: {}
+[12.753227] (-) TimerEvent: {}
+[12.795288] (agent_interfaces) StdoutLine: {'line': b'[ 74%] Built target agent_interfaces__py\n'}
+[12.805714] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces__python\x1b[0m\n'}
+[12.853418] (-) TimerEvent: {}
+[12.913674] (agent_interfaces) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding C object CMakeFiles/agent_interfaces__python.dir/rosidl_generator_py/agent_interfaces/srv/_get_position_s.c.o\x1b[0m\n'}
+[12.953718] (-) TimerEvent: {}
+[13.046071] (agent_interfaces) StdoutLine: {'line': b'[ 80%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/agent_interfaces/libagent_interfaces__python.so\x1b[0m\n'}
+[13.053907] (-) TimerEvent: {}
+[13.154481] (-) TimerEvent: {}
+[13.185253] (agent_interfaces) StdoutLine: {'line': b'[ 80%] Built target agent_interfaces__python\n'}
+[13.203633] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces__rosidl_typesupport_fastrtps_c__pyext\x1b[0m\n'}
+[13.204619] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces__rosidl_typesupport_introspection_c__pyext\x1b[0m\n'}
+[13.205492] (agent_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target agent_interfaces__rosidl_typesupport_c__pyext\x1b[0m\n'}
+[13.231921] (agent_interfaces) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/agent_interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/agent_interfaces/_agent_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[13.232239] (agent_interfaces) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/agent_interfaces__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/agent_interfaces/_agent_interfaces_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[13.232380] (agent_interfaces) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/agent_interfaces__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/agent_interfaces/_agent_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[13.254678] (-) TimerEvent: {}
+[13.354137] (agent_interfaces) StdoutLine: {'line': b'[ 96%] \x1b[32m\x1b[1mLinking CXX shared library rosidl_generator_py/agent_interfaces/agent_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so\x1b[0m\n'}
+[13.354540] (agent_interfaces) StdoutLine: {'line': b'[ 96%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/agent_interfaces/agent_interfaces_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so\x1b[0m\n'}
+[13.354674] (-) TimerEvent: {}
+[13.357928] (agent_interfaces) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/agent_interfaces/agent_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so\x1b[0m\n'}
+[13.454044] (agent_interfaces) StdoutLine: {'line': b'[100%] Built target agent_interfaces__rosidl_typesupport_c__pyext\n'}
+[13.454809] (-) TimerEvent: {}
+[13.468853] (agent_interfaces) StdoutLine: {'line': b'[100%] Built target agent_interfaces__rosidl_typesupport_introspection_c__pyext\n'}
+[13.475705] (agent_interfaces) StdoutLine: {'line': b'[100%] Built target agent_interfaces__rosidl_typesupport_fastrtps_c__pyext\n'}
+[13.489606] (agent_interfaces) CommandEnded: {'returncode': 0}
+[13.551822] (agent_interfaces) JobProgress: {'identifier': 'agent_interfaces', 'progress': 'install'}
+[13.555021] (-) TimerEvent: {}
+[13.565688] (agent_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces'], 'cwd': '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'drone'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/drone/Planning-drones-ROS2/install/tutorial_interfaces/lib:/home/drone/Planning-drones-ROS2/install/planner_interface/lib:/home/drone/Planning-drones-ROS2/install/interfaces/lib:/home/drone/Planning-drones-ROS2/install/agent_interfaces/lib:/home/drone/px4_ros_com_ros2/install/px4_ros_com/lib:/home/drone/px4_ros_com_ros2/install/px4_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/drone'), ('OLDPWD', '/home/drone/Planning-drones-ROS2'), ('ROS_PYTHON_VERSION', '3'), ('WSL_DISTRO_NAME', 'UbuntuGazebo'), ('_colcon_cd_root', '/home/drone/dev_ws'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/drone/Planning-drones-ROS2/install:/home/drone/px4_ros_com_ros2/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'drone'), ('NAME', 'LAPTOP-Q8LS440C'), ('WSL_INTEROP', '/run/WSL/25_interop'), ('PULSE_SERVER', '/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('LIBGL_ALWAYS_INDIRECT', '0'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/drone/px4_ros_com_ros2/install/px4_ros_com/bin:/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/drone/.local/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64/compiler:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/nodejs/:/mnt/c/Users/errea/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0/LocalCache/local-packages/Python310/Scripts:/mnt/c/Users/errea/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/errea/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/errea/AppData/Roaming/npm:/mnt/c/Program Files/heroku/bin:/snap/bin:/opt/gradle/gradle-6.3/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', '172.26.32.1:0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/drone/Planning-drones-ROS2/install/user_interface:/home/drone/Planning-drones-ROS2/install/tutorial_interfaces:/home/drone/Planning-drones-ROS2/install/robots_control:/home/drone/Planning-drones-ROS2/install/py_planner:/home/drone/Planning-drones-ROS2/install/planner_interface:/home/drone/Planning-drones-ROS2/install/interfaces:/home/drone/Planning-drones-ROS2/install/agents_pos_service:/home/drone/Planning-drones-ROS2/install/agent_interfaces:/home/drone/px4_ros_com_ros2/install/px4_ros_com:/home/drone/px4_ros_com_ros2/install/px4_msgs:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/drone/Planning-drones-ROS2/install/user_interface/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/tutorial_interfaces/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/py_planner/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/planner_interface/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/interfaces/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/agents_pos_service/lib/python3.8/site-packages:/home/drone/Planning-drones-ROS2/install/agent_interfaces/lib/python3.8/site-packages:/home/drone/px4_ros_com_ros2/install/px4_msgs/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/home/drone/Planning-drones-ROS2/install/tutorial_interfaces:/home/drone/Planning-drones-ROS2/install/robots_control:/home/drone/Planning-drones-ROS2/install/planner_interface:/home/drone/Planning-drones-ROS2/install/interfaces:/home/drone/Planning-drones-ROS2/install/agent_interfaces:/home/drone/px4_ros_com_ros2/install/px4_ros_com:/home/drone/px4_ros_com_ros2/install/px4_msgs:/home/drone/Planning-drones-ROS2/install/user_interface:/home/drone/Planning-drones-ROS2/install/py_planner:/home/drone/Planning-drones-ROS2/install/agents_pos_service:/opt/ros/foxy'), ('WSLENV', '')]), 'shell': False}
+[13.575828] (agent_interfaces) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[13.576275] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/ament_index/resource_index/rosidl_interfaces/agent_interfaces\n'}
+[13.576541] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces\n'}
+[13.577183] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv\n'}
+[13.577418] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/get_position.h\n'}
+[13.577747] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail\n'}
+[13.577867] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/get_position__struct.h\n'}
+[13.578195] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/get_position__functions.c\n'}
+[13.578324] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/get_position__functions.h\n'}
+[13.578897] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/get_position__type_support.h\n'}
+[13.579131] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/msg\n'}
+[13.579300] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/msg/rosidl_generator_c__visibility_control.h\n'}
+[13.579700] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/environment/library_path.sh\n'}
+[13.579917] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/environment/library_path.dsv\n'}
+[13.580180] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_generator_c.so\n'}
+[13.580498] (agent_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_generator_c.so" to ""\n'}
+[13.580893] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces\n'}
+[13.581221] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv\n'}
+[13.581480] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail\n'}
+[13.581573] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/get_position__rosidl_typesupport_fastrtps_c.h\n'}
+[13.581654] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/msg\n'}
+[13.582045] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[13.582411] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_typesupport_fastrtps_c.so\n'}
+[13.582656] (agent_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[13.582922] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces\n'}
+[13.583161] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv\n'}
+[13.583539] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail\n'}
+[13.583885] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/get_position__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[13.583976] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/dds_fastrtps\n'}
+[13.584063] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/msg\n'}
+[13.584263] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[13.584346] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_typesupport_fastrtps_cpp.so\n'}
+[13.584416] (agent_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[13.584511] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces\n'}
+[13.584767] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv\n'}
+[13.585037] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail\n'}
+[13.585199] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/get_position__type_support.c\n'}
+[13.585640] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/get_position__rosidl_typesupport_introspection_c.h\n'}
+[13.585997] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/msg\n'}
+[13.586218] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[13.586567] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_typesupport_introspection_c.so\n'}
+[13.586805] (agent_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_typesupport_introspection_c.so" to ""\n'}
+[13.586921] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_typesupport_c.so\n'}
+[13.587115] (agent_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_typesupport_c.so" to ""\n'}
+[13.587195] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces\n'}
+[13.587486] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv\n'}
+[13.587833] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail\n'}
+[13.587963] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/get_position__builder.hpp\n'}
+[13.588303] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/get_position__struct.hpp\n'}
+[13.588490] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/get_position__traits.hpp\n'}
+[13.588838] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/get_position.hpp\n'}
+[13.589532] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces\n'}
+[13.589701] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv\n'}
+[13.589849] (agent_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail\n'}
+[13.590039] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/get_position__rosidl_typesupport_introspection_cpp.hpp\n'}
+[13.590216] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/include/agent_interfaces/srv/detail/get_position__type_support.cpp\n'}
+[13.590362] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_typesupport_introspection_cpp.so\n'}
+[13.590481] (agent_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[13.590609] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_typesupport_cpp.so\n'}
+[13.590745] (agent_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__rosidl_typesupport_cpp.so" to ""\n'}
+[13.590942] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/environment/pythonpath.sh\n'}
+[13.591088] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/environment/pythonpath.dsv\n'}
+[13.591214] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages/agent_interfaces/__init__.py\n'}
+[13.633960] (agent_interfaces) StdoutLine: {'line': b"Compiling '/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages/agent_interfaces/__init__.py'...\n"}
+[13.638795] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages/agent_interfaces/srv\n'}
+[13.639532] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages/agent_interfaces/srv/_get_position_s.c\n'}
+[13.639965] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages/agent_interfaces/srv/_get_position.py\n'}
+[13.640251] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages/agent_interfaces/srv/__init__.py\n'}
+[13.640502] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages/agent_interfaces/agent_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so\n'}
+[13.640930] (agent_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages/agent_interfaces/agent_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so" to ""\n'}
+[13.641388] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages/agent_interfaces/agent_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so\n'}
+[13.642029] (agent_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages/agent_interfaces/agent_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so" to ""\n'}
+[13.642371] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages/agent_interfaces/agent_interfaces_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so\n'}
+[13.642928] (agent_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/python3.8/site-packages/agent_interfaces/agent_interfaces_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so" to ""\n'}
+[13.643159] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__python.so\n'}
+[13.643468] (agent_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/lib/libagent_interfaces__python.so" to ""\n'}
+[13.655182] (-) TimerEvent: {}
+[13.656441] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/srv/GetPosition.idl\n'}
+[13.656818] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/srv/GetPosition.srv\n'}
+[13.656970] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/srv/GetPosition_Request.msg\n'}
+[13.657237] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/srv/GetPosition_Response.msg\n'}
+[13.657403] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/ament_index/resource_index/package_run_dependencies/agent_interfaces\n'}
+[13.657654] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/ament_index/resource_index/parent_prefix_path/agent_interfaces\n'}
+[13.658004] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/environment/ament_prefix_path.sh\n'}
+[13.658244] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/environment/ament_prefix_path.dsv\n'}
+[13.658499] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/environment/path.sh\n'}
+[13.658833] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/environment/path.dsv\n'}
+[13.659182] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/local_setup.bash\n'}
+[13.659512] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/local_setup.sh\n'}
+[13.659783] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/local_setup.zsh\n'}
+[13.660049] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/local_setup.dsv\n'}
+[13.660350] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/package.dsv\n'}
+[13.660700] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/ament_index/resource_index/packages/agent_interfaces\n'}
+[13.661231] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/agent_interfaces__rosidl_generator_cExport.cmake\n'}
+[13.661617] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/agent_interfaces__rosidl_generator_cExport-noconfig.cmake\n'}
+[13.661873] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/agent_interfaces__rosidl_typesupport_introspection_cExport.cmake\n'}
+[13.662185] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/agent_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[13.662521] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/agent_interfaces__rosidl_typesupport_cExport.cmake\n'}
+[13.662839] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/agent_interfaces__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[13.663128] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/agent_interfaces__rosidl_generator_cppExport.cmake\n'}
+[13.663557] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/agent_interfaces__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[13.663920] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/agent_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[13.664361] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/agent_interfaces__rosidl_typesupport_cppExport.cmake\n'}
+[13.664642] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/agent_interfaces__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[13.664897] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/rosidl_cmake-extras.cmake\n'}
+[13.665245] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[13.665557] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[13.665921] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[13.666333] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[13.666564] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[13.666830] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[13.667064] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/agent_interfacesConfig.cmake\n'}
+[13.667342] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/cmake/agent_interfacesConfig-version.cmake\n'}
+[13.667616] (agent_interfaces) StdoutLine: {'line': b'-- Installing: /home/drone/Planning-drones-ROS2/agent_interfaces/install/agent_interfaces/share/agent_interfaces/package.xml\n'}
+[13.670498] (agent_interfaces) CommandEnded: {'returncode': 0}
+[13.755401] (-) TimerEvent: {}
+[13.794877] (agent_interfaces) JobEnded: {'identifier': 'agent_interfaces', 'rc': 0}
+[13.796519] (-) EventReactorShutdown: {}

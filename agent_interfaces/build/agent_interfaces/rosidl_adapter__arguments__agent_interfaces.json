@@ -1,0 +1,6 @@
+{
+  "package_name": "agent_interfaces",
+  "non_idl_tuples": [
+    "/home/drone/Planning-drones-ROS2/agent_interfaces:srv/GetPosition.srv"
+  ]
+}

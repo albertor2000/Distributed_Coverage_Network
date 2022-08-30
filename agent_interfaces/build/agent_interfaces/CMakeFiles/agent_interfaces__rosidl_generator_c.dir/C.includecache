@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces/rosidl_generator_c/agent_interfaces/srv/detail/get_position__functions.c
+agent_interfaces/srv/detail/get_position__functions.h
+/home/drone/Planning-drones-ROS2/agent_interfaces/build/agent_interfaces/rosidl_generator_c/agent_interfaces/srv/detail/agent_interfaces/srv/detail/get_position__functions.h
+assert.h
+-
+stdbool.h
+-
+stdlib.h
+-
+string.h
+-
+
+/opt/ros/foxy/include/rosidl_runtime_c/visibility_control.h
+
+rosidl_generator_c/agent_interfaces/msg/rosidl_generator_c__visibility_control.h
+
+rosidl_generator_c/agent_interfaces/srv/detail/get_position__functions.h
+stdbool.h
+-
+stdlib.h
+-
+rosidl_runtime_c/visibility_control.h
+rosidl_generator_c/agent_interfaces/srv/detail/rosidl_runtime_c/visibility_control.h
+agent_interfaces/msg/rosidl_generator_c__visibility_control.h
+rosidl_generator_c/agent_interfaces/srv/detail/agent_interfaces/msg/rosidl_generator_c__visibility_control.h
+agent_interfaces/srv/detail/get_position__struct.h
+rosidl_generator_c/agent_interfaces/srv/detail/agent_interfaces/srv/detail/get_position__struct.h
+
+rosidl_generator_c/agent_interfaces/srv/detail/get_position__struct.h
+stdbool.h
+-
+stddef.h
+-
+stdint.h
+-
+

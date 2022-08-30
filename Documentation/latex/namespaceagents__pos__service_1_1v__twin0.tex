@@ -1,0 +1,329 @@
+\hypertarget{namespaceagents__pos__service_1_1v__twin0}{}\doxysection{agents\+\_\+pos\+\_\+service.\+v\+\_\+twin0 Namespace Reference}
+\label{namespaceagents__pos__service_1_1v__twin0}\index{agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}}
+
+
+Python node that do Coverage Control for Mobile Sensing Networks.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classagents__pos__service_1_1v__twin0_1_1_coordinates_publisher}{Coordinates\+Publisher}}
+\begin{DoxyCompactList}\small\item\em The Coordinates Publisher class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classagents__pos__service_1_1v__twin0_1_1_height_subscriber}{Height\+Subscriber}}
+\begin{DoxyCompactList}\small\item\em The Height Subscriber class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classagents__pos__service_1_1v__twin0_1_1_r_t_position1_subscriber}{RTPosition1\+Subscriber}}
+\begin{DoxyCompactList}\small\item\em The Real Time Position Subscriber class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classagents__pos__service_1_1v__twin0_1_1_r_t_position_subscriber}{RTPosition\+Subscriber}}
+\begin{DoxyCompactList}\small\item\em The Real Time Position Subscriber class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_a032aef8b16458665128e80a94bdf507e}{bounded\+\_\+voronoi}} (bnd, pnts)
+\begin{DoxyCompactList}\small\item\em A function that calculates and draws bounded Voronoi diagrams. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_a4b81478411ebd80614d4b5de4cec965e}{get\+Centroid}} (x, y)
+\begin{DoxyCompactList}\small\item\em Calculates the centroid point of the cell passed by parameters. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_a272088212b46b1aeecb3acdb9d98c31a}{get\+Polar\+Moment}} (x, y, c)
+\begin{DoxyCompactList}\small\item\em Calculates the polar moment of the cell passed by parameters. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_ab1ef45941b6f1ca9a5805a5664f6ee7b}{get\+Distance}} (a, b)
+\begin{DoxyCompactList}\small\item\em Calculates the distance between two points. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_a1e9ce325a6520f9ed8e533361a719fb8}{get\+Middle\+Point}} (a, b)
+\begin{DoxyCompactList}\small\item\em Calculates the middle point of two points. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_ab46a3c147cf764be739a7f2b63467ade}{get\+Weighted\+Middle\+Point}} (a, b)
+\begin{DoxyCompactList}\small\item\em Calculates the middle point nearer to a, between two points. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_a0034d40c8a205504d5c15350f33035aa}{voronoi\+To\+Map}} (coordinate10)
+\begin{DoxyCompactList}\small\item\em SERVICES ROS \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_ab32933b4aa1b3351d1d92cc344bbdf0a}{Map\+To\+Voronoi}} (coordinate\+Map)
+\begin{DoxyCompactList}\small\item\em Convert map scale point to voronoi scale point. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_a251c9412aace2da9ce872b9a29a03859}{go\+To\+Destination}} (x, y, z)
+\begin{DoxyCompactList}\small\item\em The Coordinates Publisher class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a81839efbc59477edbccc2c712060af80}\label{namespaceagents__pos__service_1_1v__twin0_a81839efbc59477edbccc2c712060af80}} 
+def {\bfseries get\+Altitude} ()
+\begin{DoxyCompactList}\small\item\em Function to call the service to get the altitude of the agent. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_a8a5960e9bcbc2c3865732c4754ab0251}{get\+RTPosition}} (drone\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Function to call the service to get the real time position of the agent. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a02225d13c9a2f9ec82e2ca35784ef14d}\label{namespaceagents__pos__service_1_1v__twin0_a02225d13c9a2f9ec82e2ca35784ef14d}} 
+def {\bfseries main} (args=None)
+\begin{DoxyCompactList}\small\item\em Main program entry. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a540885e0c2426acecbcdc7b7be60b1e2}\label{namespaceagents__pos__service_1_1v__twin0_a540885e0c2426acecbcdc7b7be60b1e2}} 
+{\bfseries height\+Subscriber} = None
+\begin{DoxyCompactList}\small\item\em Subscriber to receive the height of the aget by ultrasonic sensor topic. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a378ff04fc4853185f00fe1787e781f00}\label{namespaceagents__pos__service_1_1v__twin0_a378ff04fc4853185f00fe1787e781f00}} 
+{\bfseries rtposition\+Subscriber} = None
+\begin{DoxyCompactList}\small\item\em Subscriber to get the position of the agent 0 from gazebo. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_ac223c8c1cb88b13ca4f325bb0e506a37}\label{namespaceagents__pos__service_1_1v__twin0_ac223c8c1cb88b13ca4f325bb0e506a37}} 
+{\bfseries rtposition1\+Subscriber} = None
+\begin{DoxyCompactList}\small\item\em Subscriber to get the position of the agent 1 from gazebo. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a7feec821e65400a405954f921f1e89a7}\label{namespaceagents__pos__service_1_1v__twin0_a7feec821e65400a405954f921f1e89a7}} 
+{\bfseries coordinates\+Publisher} = None
+\begin{DoxyCompactList}\small\item\em Publisher to send the coordinates of the calculated position to robots\+\_\+contol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a3e3bd24caf3918ea305dbc377a1db8b6}\label{namespaceagents__pos__service_1_1v__twin0_a3e3bd24caf3918ea305dbc377a1db8b6}} 
+float {\bfseries dest\+\_\+x} = 5.\+0
+\begin{DoxyCompactList}\small\item\em x destination coordinate to send with coordinates\+Publisher to robots\+\_\+control. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a7dffb965b1515f5ef575ab8a2ca60dfe}\label{namespaceagents__pos__service_1_1v__twin0_a7dffb965b1515f5ef575ab8a2ca60dfe}} 
+float {\bfseries dest\+\_\+y} = 10.\+0
+\begin{DoxyCompactList}\small\item\em y destination coordinate to send with coordinates\+Publisher to robots\+\_\+control. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_af14d32834b1029314473228a965b3ac0}\label{namespaceagents__pos__service_1_1v__twin0_af14d32834b1029314473228a965b3ac0}} 
+float {\bfseries dest\+\_\+z} = -\/30.\+0
+\begin{DoxyCompactList}\small\item\em z destination coordinate to send with coordinates\+Publisher to robots\+\_\+control. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_af854d228c07d4a30eb0ad7a6e2395108}\label{namespaceagents__pos__service_1_1v__twin0_af854d228c07d4a30eb0ad7a6e2395108}} 
+int {\bfseries REFRESH\+\_\+\+TIME} = 5
+\begin{DoxyCompactList}\small\item\em The time to wait to calculate the new position with Lloyd algorithm. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_add98f648ed47b3254f9806309bdce032}\label{namespaceagents__pos__service_1_1v__twin0_add98f648ed47b3254f9806309bdce032}} 
+int {\bfseries DISTANCE\+\_\+\+FROM\+\_\+\+TERRAIN} = 20
+\begin{DoxyCompactList}\small\item\em Distance the agent have to maintain from the terrain. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_a82ef70e1db9238b31f041a3fdb1d25f3}{MAP\+\_\+\+SIZE}} = 2400
+\begin{DoxyCompactList}\small\item\em The size of the map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_ae222dab4718429f5f943e0dcc9fb6d26}\label{namespaceagents__pos__service_1_1v__twin0_ae222dab4718429f5f943e0dcc9fb6d26}} 
+float {\bfseries mx} = 1.\+0
+\begin{DoxyCompactList}\small\item\em This agent position x coordinate (voronoi scale) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a3184b00914e43389450f9bde94a9ef14}\label{namespaceagents__pos__service_1_1v__twin0_a3184b00914e43389450f9bde94a9ef14}} 
+float {\bfseries my} = 2.\+0
+\begin{DoxyCompactList}\small\item\em This agent position y coordinate (voronoi scale) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_abe825b90bba8524434089daea8cbc4bb}\label{namespaceagents__pos__service_1_1v__twin0_abe825b90bba8524434089daea8cbc4bb}} 
+float {\bfseries mz} = 3.\+0
+\begin{DoxyCompactList}\small\item\em This agent position z coordinate (voronoi scale) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a919a97642a9d8930061ce7e27d0d8d81}\label{namespaceagents__pos__service_1_1v__twin0_a919a97642a9d8930061ce7e27d0d8d81}} 
+float {\bfseries mh} = 4.\+0
+\begin{DoxyCompactList}\small\item\em Altitude of this agent. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a085659fcdcea6e8afa559d262f6705d7}\label{namespaceagents__pos__service_1_1v__twin0_a085659fcdcea6e8afa559d262f6705d7}} 
+tuple {\bfseries sendx} = (\mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_ae222dab4718429f5f943e0dcc9fb6d26}{mx}} $\ast$ \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_a82ef70e1db9238b31f041a3fdb1d25f3}{MAP\+\_\+\+SIZE}} / 10) -\/ (\mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_a82ef70e1db9238b31f041a3fdb1d25f3}{MAP\+\_\+\+SIZE}} / 2)
+\begin{DoxyCompactList}\small\item\em This agent position z coordinate (map scale) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_adf4311fbc2014529617e4ca816640acc}\label{namespaceagents__pos__service_1_1v__twin0_adf4311fbc2014529617e4ca816640acc}} 
+tuple {\bfseries sendy} = (\mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_a3184b00914e43389450f9bde94a9ef14}{my}} $\ast$ \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_a82ef70e1db9238b31f041a3fdb1d25f3}{MAP\+\_\+\+SIZE}} / 10) -\/ (\mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_a82ef70e1db9238b31f041a3fdb1d25f3}{MAP\+\_\+\+SIZE}} / 2)
+\begin{DoxyCompactList}\small\item\em This agent position z coordinate (map scale) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a5870791bd98f0a949b01588ad9429255}\label{namespaceagents__pos__service_1_1v__twin0_a5870791bd98f0a949b01588ad9429255}} 
+float {\bfseries sendz} = \mbox{\hyperlink{namespaceagents__pos__service_1_1v__twin0_abe825b90bba8524434089daea8cbc4bb}{mz}}
+\begin{DoxyCompactList}\small\item\em This agent position z coordinate (map scale) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a50f497c6236d78cf5cb04d086d115086}\label{namespaceagents__pos__service_1_1v__twin0_a50f497c6236d78cf5cb04d086d115086}} 
+int {\bfseries MY\+\_\+\+ID} = 0
+\begin{DoxyCompactList}\small\item\em This agent id. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_ae3f054047fd91f3a8d7077898ea98c65}\label{namespaceagents__pos__service_1_1v__twin0_ae3f054047fd91f3a8d7077898ea98c65}} 
+int {\bfseries ITERATIONS} = 5
+\begin{DoxyCompactList}\small\item\em Iterations to converge before take the photo. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_aac27de889424140dd0a88e277309f0ec}\label{namespaceagents__pos__service_1_1v__twin0_aac27de889424140dd0a88e277309f0ec}} 
+int {\bfseries N\+\_\+\+AGENTS} = 2
+\begin{DoxyCompactList}\small\item\em Number of agents used. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a8a83929bb3b7b2c004e5a8fb2986d01b}\label{namespaceagents__pos__service_1_1v__twin0_a8a83929bb3b7b2c004e5a8fb2986d01b}} 
+int {\bfseries M\+\_\+\+FACTOR} = 10
+\begin{DoxyCompactList}\small\item\em DO NOT TOUCH\+: Multiplicative factor (Used to calculate voronoi cells) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a14cf06c0b5223d2a612cc01c184f49bb}\label{namespaceagents__pos__service_1_1v__twin0_a14cf06c0b5223d2a612cc01c184f49bb}} 
+list {\bfseries destination} = \mbox{[}6, 7\mbox{]}
+\begin{DoxyCompactList}\small\item\em Destination where my agents has to arrive. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_aab35cbc36300847cd1d55411f10814e7}\label{namespaceagents__pos__service_1_1v__twin0_aab35cbc36300847cd1d55411f10814e7}} 
+list {\bfseries agents\+\_\+position} = \mbox{[}\mbox{[}-\/1, -\/1, 1\mbox{]}, \mbox{[}-\/1, -\/1, 1\mbox{]}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Position of all agents. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Python node that do Coverage Control for Mobile Sensing Networks. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a032aef8b16458665128e80a94bdf507e}\label{namespaceagents__pos__service_1_1v__twin0_a032aef8b16458665128e80a94bdf507e}} 
+\index{agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}!bounded\_voronoi@{bounded\_voronoi}}
+\index{bounded\_voronoi@{bounded\_voronoi}!agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}}
+\doxysubsubsection{\texorpdfstring{bounded\_voronoi()}{bounded\_voronoi()}}
+{\footnotesize\ttfamily def agents\+\_\+pos\+\_\+service.\+v\+\_\+twin0.\+bounded\+\_\+voronoi (\begin{DoxyParamCaption}\item[{}]{bnd,  }\item[{}]{pnts }\end{DoxyParamCaption})}
+
+
+
+A function that calculates and draws bounded Voronoi diagrams. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bnd} & The bounded of the space. \\
+\hline
+{\em pnts} & Agents positions. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a4b81478411ebd80614d4b5de4cec965e}\label{namespaceagents__pos__service_1_1v__twin0_a4b81478411ebd80614d4b5de4cec965e}} 
+\index{agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}!getCentroid@{getCentroid}}
+\index{getCentroid@{getCentroid}!agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}}
+\doxysubsubsection{\texorpdfstring{getCentroid()}{getCentroid()}}
+{\footnotesize\ttfamily def agents\+\_\+pos\+\_\+service.\+v\+\_\+twin0.\+get\+Centroid (\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+
+
+Calculates the centroid point of the cell passed by parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The array of x coordinates of all points that delimitates the region. \\
+\hline
+{\em y} & The array of x coordinates of all points that delimitates the region.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The (x, y) coordinates of the centroid. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_ab1ef45941b6f1ca9a5805a5664f6ee7b}\label{namespaceagents__pos__service_1_1v__twin0_ab1ef45941b6f1ca9a5805a5664f6ee7b}} 
+\index{agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}!getDistance@{getDistance}}
+\index{getDistance@{getDistance}!agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}}
+\doxysubsubsection{\texorpdfstring{getDistance()}{getDistance()}}
+{\footnotesize\ttfamily def agents\+\_\+pos\+\_\+service.\+v\+\_\+twin0.\+get\+Distance (\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})}
+
+
+
+Calculates the distance between two points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first point \mbox{[}x, y\mbox{]}. \\
+\hline
+{\em b} & The second point \mbox{[}x, y\mbox{]}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the distance between the two given points. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a1e9ce325a6520f9ed8e533361a719fb8}\label{namespaceagents__pos__service_1_1v__twin0_a1e9ce325a6520f9ed8e533361a719fb8}} 
+\index{agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}!getMiddlePoint@{getMiddlePoint}}
+\index{getMiddlePoint@{getMiddlePoint}!agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}}
+\doxysubsubsection{\texorpdfstring{getMiddlePoint()}{getMiddlePoint()}}
+{\footnotesize\ttfamily def agents\+\_\+pos\+\_\+service.\+v\+\_\+twin0.\+get\+Middle\+Point (\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})}
+
+
+
+Calculates the middle point of two points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first point \mbox{[}x, y\mbox{]}. \\
+\hline
+{\em b} & The second point \mbox{[}x, y\mbox{]}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the middle point of the two given points. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a272088212b46b1aeecb3acdb9d98c31a}\label{namespaceagents__pos__service_1_1v__twin0_a272088212b46b1aeecb3acdb9d98c31a}} 
+\index{agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}!getPolarMoment@{getPolarMoment}}
+\index{getPolarMoment@{getPolarMoment}!agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}}
+\doxysubsubsection{\texorpdfstring{getPolarMoment()}{getPolarMoment()}}
+{\footnotesize\ttfamily def agents\+\_\+pos\+\_\+service.\+v\+\_\+twin0.\+get\+Polar\+Moment (\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{c }\end{DoxyParamCaption})}
+
+
+
+Calculates the polar moment of the cell passed by parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The array of x coordinates of all points that delimitates the region. \\
+\hline
+{\em y} & The array of x coordinates of all points that delimitates the region. \\
+\hline
+{\em c} & The c value.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of polar moment of the regior. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a8a5960e9bcbc2c3865732c4754ab0251}\label{namespaceagents__pos__service_1_1v__twin0_a8a5960e9bcbc2c3865732c4754ab0251}} 
+\index{agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}!getRTPosition@{getRTPosition}}
+\index{getRTPosition@{getRTPosition}!agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}}
+\doxysubsubsection{\texorpdfstring{getRTPosition()}{getRTPosition()}}
+{\footnotesize\ttfamily def agents\+\_\+pos\+\_\+service.\+v\+\_\+twin0.\+get\+RTPosition (\begin{DoxyParamCaption}\item[{}]{drone\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Function to call the service to get the real time position of the agent. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em drone\+\_\+id} & The drone id of which get the position \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_ab46a3c147cf764be739a7f2b63467ade}\label{namespaceagents__pos__service_1_1v__twin0_ab46a3c147cf764be739a7f2b63467ade}} 
+\index{agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}!getWeightedMiddlePoint@{getWeightedMiddlePoint}}
+\index{getWeightedMiddlePoint@{getWeightedMiddlePoint}!agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}}
+\doxysubsubsection{\texorpdfstring{getWeightedMiddlePoint()}{getWeightedMiddlePoint()}}
+{\footnotesize\ttfamily def agents\+\_\+pos\+\_\+service.\+v\+\_\+twin0.\+get\+Weighted\+Middle\+Point (\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})}
+
+
+
+Calculates the middle point nearer to a, between two points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first point \mbox{[}x, y\mbox{]}. \\
+\hline
+{\em b} & The second point \mbox{[}x, y\mbox{]}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the weighted middle point the two given points. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a251c9412aace2da9ce872b9a29a03859}\label{namespaceagents__pos__service_1_1v__twin0_a251c9412aace2da9ce872b9a29a03859}} 
+\index{agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}!goToDestination@{goToDestination}}
+\index{goToDestination@{goToDestination}!agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}}
+\doxysubsubsection{\texorpdfstring{goToDestination()}{goToDestination()}}
+{\footnotesize\ttfamily def agents\+\_\+pos\+\_\+service.\+v\+\_\+twin0.\+go\+To\+Destination (\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})}
+
+
+
+The Coordinates Publisher class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x coordinate of the destination to arrive. \\
+\hline
+{\em y} & The y coordinate of the destination to arrive. \\
+\hline
+{\em z} & The z coordinate of the destination to arrive.\\
+\hline
+\end{DoxyParams}
+Defines the publisher class utilized to send the new position to robots\+\_\+control. \mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_ab32933b4aa1b3351d1d92cc344bbdf0a}\label{namespaceagents__pos__service_1_1v__twin0_ab32933b4aa1b3351d1d92cc344bbdf0a}} 
+\index{agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}!MapToVoronoi@{MapToVoronoi}}
+\index{MapToVoronoi@{MapToVoronoi}!agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}}
+\doxysubsubsection{\texorpdfstring{MapToVoronoi()}{MapToVoronoi()}}
+{\footnotesize\ttfamily def agents\+\_\+pos\+\_\+service.\+v\+\_\+twin0.\+Map\+To\+Voronoi (\begin{DoxyParamCaption}\item[{}]{coordinate\+Map }\end{DoxyParamCaption})}
+
+
+
+Convert map scale point to voronoi scale point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coordinate\+Map} & The coordinate in map scale.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The coordinate in voronoi scale. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a0034d40c8a205504d5c15350f33035aa}\label{namespaceagents__pos__service_1_1v__twin0_a0034d40c8a205504d5c15350f33035aa}} 
+\index{agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}!voronoiToMap@{voronoiToMap}}
+\index{voronoiToMap@{voronoiToMap}!agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}}
+\doxysubsubsection{\texorpdfstring{voronoiToMap()}{voronoiToMap()}}
+{\footnotesize\ttfamily def agents\+\_\+pos\+\_\+service.\+v\+\_\+twin0.\+voronoi\+To\+Map (\begin{DoxyParamCaption}\item[{}]{coordinate10 }\end{DoxyParamCaption})}
+
+
+
+SERVICES ROS \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#. 
+
+Convert voronoi scale point to map scale point.
+
+
+\begin{DoxyParams}{Parameters}
+{\em coordinate10} & The coordinate in voronoi scale.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The coordinate in map scale. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceagents__pos__service_1_1v__twin0_a82ef70e1db9238b31f041a3fdb1d25f3}\label{namespaceagents__pos__service_1_1v__twin0_a82ef70e1db9238b31f041a3fdb1d25f3}} 
+\index{agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}!MAP\_SIZE@{MAP\_SIZE}}
+\index{MAP\_SIZE@{MAP\_SIZE}!agents\_pos\_service.v\_twin0@{agents\_pos\_service.v\_twin0}}
+\doxysubsubsection{\texorpdfstring{MAP\_SIZE}{MAP\_SIZE}}
+{\footnotesize\ttfamily int agents\+\_\+pos\+\_\+service.\+v\+\_\+twin0.\+MAP\+\_\+\+SIZE = 2400}
+
+
+
+The size of the map. 
+
+This variable is use to convert coordinates from voronoi (0 to 10) to the map (0 to MAP\+\_\+\+SIZE) 

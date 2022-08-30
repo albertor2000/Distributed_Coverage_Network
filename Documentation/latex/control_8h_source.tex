@@ -1,0 +1,100 @@
+\hypertarget{control_8h_source}{}\doxysection{control.\+h}
+\label{control_8h_source}\index{/home/drone/Planning-\/drones-\/ROS2/robots\_control/src/control.h@{/home/drone/Planning-\/drones-\/ROS2/robots\_control/src/control.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_\_CONTROL\_H\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_\_CONTROL\_H\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <px4\_msgs/msg/offboard\_control\_mode.hpp>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <px4\_msgs/msg/trajectory\_setpoint.hpp>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <px4\_msgs/msg/timesync.hpp>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <px4\_msgs/msg/vehicle\_command.hpp>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <px4\_msgs/msg/vehicle\_control\_mode.hpp>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <px4\_msgs/msg/vehicle\_odometry.hpp>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <sensor\_msgs/msg/image.hpp>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <sensor\_msgs/msg/range.hpp>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <opencv2/core.hpp>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <opencv2/imgcodecs.hpp>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <opencv2/highgui.hpp>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <opencv2/highgui/highgui.hpp>}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}cv\_bridge/cv\_bridge.h"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <opencv2/opencv.hpp>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <opencv2/imgproc/imgproc.hpp>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <opencv2/highgui/highgui.hpp>}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <rclcpp/rclcpp.hpp>}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <thread>}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <chrono>}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include <thread>} }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <mutex>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include "{}interfaces/msg/mymsg.hpp"{}}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#include "{}interfaces/msg/msg\_ret.hpp"{}}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include "{}planner\_interface/srv/msg\_json.hpp"{}}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#include "{}interfaces/msg/posmsg.hpp"{}}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#include "{}interfaces/msg/height.hpp"{}}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{keyword}{using namespace }px4\_msgs::msg;}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define DOUBLE\_MAX 1.79769e+308}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define PI 3.141592654}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define TARGET\_PRECISION 0.5}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#define DEBUG\_MODE true}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define TEST\_MODE false}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define DEMO\_MODE false}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define NDRONE 2}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define NROVER 1}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define WAITTIME 500}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{comment}{//function to arm a drone and do a takeoff (default height 5.0m)}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{keywordtype}{void} takeoff\_drone(\textcolor{keywordtype}{int} droneid,\textcolor{keywordtype}{double} z);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{comment}{//on spot landing}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{keywordtype}{void} land\_at\_actual\_location\_drone(\textcolor{keywordtype}{int} droneid);}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{comment}{//move the drone to specific coordinates}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{keywordtype}{void} position\_drone(\textcolor{keywordtype}{int} droneid,\textcolor{keywordtype}{double} x\_dest,\textcolor{keywordtype}{double} y\_dest,\textcolor{keywordtype}{double} z\_dest,\textcolor{keywordtype}{double} yaw\_dest);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{comment}{//rotate drone on the spot}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{keywordtype}{void} yaw\_rotation\_drone(\textcolor{keywordtype}{int} droneid,\textcolor{keywordtype}{double} new\_yaw);}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{comment}{//disarm a drone}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{keywordtype}{void} disarm\_drone(\textcolor{keywordtype}{int} droneid);}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{comment}{//function to get an image from a drone}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{keywordtype}{void} get\_image(\textcolor{keywordtype}{int} droneid);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{comment}{//function to mesure the distance from ground}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{keywordtype}{void} get\_depth(\textcolor{keywordtype}{int} droneid);}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{comment}{//function to initialize all the publishers ad subscribers}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \textcolor{keywordtype}{void} init\_all(\textcolor{keywordtype}{int} argc,\textcolor{keywordtype}{char}* argv[]);}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{keywordtype}{void} perform\_mission\_drone(\textcolor{keywordtype}{int} droneid);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{keywordtype}{void} perform\_mission\_rover(\textcolor{keywordtype}{int} roverid);}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
