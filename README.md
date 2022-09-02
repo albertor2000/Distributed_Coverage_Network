@@ -43,7 +43,8 @@ ros2 run agents_pos_service twin1 # In the second terminal
 ```
 ## Demonstration
 
-Video: https://drive.google.com/file/d/1l9ly6nYMTjC7wKxgvHTteB1Me8L3y-Iq/view?usp=sharing
+Distributed planning: https://drive.google.com/file/d/1l9ly6nYMTjC7wKxgvHTteB1Me8L3y-Iq/view?usp=sharing
+The all project: https://drive.google.com/file/d/1PY5wXPasuxL8XlqafEBgT_cY-pt-9NRW/view?usp=sharing
 
 ## Contributors
 
