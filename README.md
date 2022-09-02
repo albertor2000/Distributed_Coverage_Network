@@ -41,6 +41,9 @@ ros2 run agents_pos_service twin0 # In the first terminal
 ```
 ros2 run agents_pos_service twin1 # In the second terminal
 ```
+## Demonstration
+
+Video: https://drive.google.com/file/d/1l9ly6nYMTjC7wKxgvHTteB1Me8L3y-Iq/view?usp=sharing
 
 ## Contributors
 
